@@ -6,6 +6,6 @@
       "type": "minecraft:multi_noise",
       "preset": "minecraft:overworld"
     },
-    "settings": "minecraft:overworld"
+    "settings": "milkbased:milk_noise_settings"
   }
 }
