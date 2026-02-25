@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/glow_lichen",
+  "render_type": "cutout",
+  "textures": {
+    "glow_lichen": "milkbased:block/blue_mold",
+    "particle": "milkbased:block/blue_mold"
+  }
+}
