@@ -20,7 +20,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItem(ModBlocks.CHEESE_BLOCK.get());
 
         simpleBlockItem(ModBlocks.CHEESE_LOG.get());
+        simpleBlockItem(ModBlocks.STRIPPED_CHEESE_LOG.get());
         simpleBlockItem(ModBlocks.CHEESE_LEAVES.get());
+        flatItemFromBlockTexture(ModBlocks.CHEESE_SAPLING.getId());
         simpleBlockItem(ModBlocks.CHEESE_PLANKS.get());
 
         flatItemFromBlockTexture(ModBlocks.BLUE_MOLD.getId());

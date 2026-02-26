@@ -3,8 +3,12 @@ package com.github.solventj.milkbased.block;
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.fluid.ModFluids;
 import com.github.solventj.milkbased.item.ModItems;
+import com.github.solventj.milkbased.worldgen.tree.ModTreeGrowers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -27,8 +31,21 @@ public class ModBlocks {
     public static final DeferredBlock<RotatedPillarBlock> CHEESE_LOG = registerBlock("cheese_log",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
 
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_CHEESE_LOG = registerBlock("stripped_cheese_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+
     public static final DeferredBlock<Block> CHEESE_LEAVES = registerBlock("cheese_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+
+    public static final DeferredBlock<Block> CHEESE_SAPLING = registerBlock("cheese_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.CHEESEWOOD,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)){
+                @Override
+                protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+                    BlockState belowBlockState = level.getBlockState(pos.below());
+                    return belowBlockState.is(ModBlocks.CHEESE_BLOCK);
+                }
+            });
 
     public static final DeferredBlock<Block> CHEESE_PLANKS = registerBlock("cheese_planks",
             () -> new Block(BlockBehaviour.Properties.of()));

@@ -22,8 +22,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.CHEESE_BLOCK.get());
 
         logBlock(ModBlocks.CHEESE_LOG.get());
+        logBlock(ModBlocks.STRIPPED_CHEESE_LOG.get());
         simpleBlock(ModBlocks.CHEESE_LEAVES.get());
+        simpleBlock(ModBlocks.CHEESE_SAPLING.get(), models().getBuilder("block/cheese_sapling")
+                .parent(models().getExistingFile(mcLoc("block/cross")))
+                .renderType("cutout")
+                .texture("cross", modLoc("block/cheese_sapling")));
         simpleBlock(ModBlocks.CHEESE_PLANKS.get());
+
+        ModelFile milkModel = models().getBuilder("block/milk")
+                .texture("particle", modLoc("block/milk_still"));
+        simpleBlock(ModBlocks.MILK.get(), milkModel);
 
         ModelFile blueMoldModel = models().getBuilder("block/blue_mold")
                 .parent(models().getExistingFile(mcLoc("block/glow_lichen")))

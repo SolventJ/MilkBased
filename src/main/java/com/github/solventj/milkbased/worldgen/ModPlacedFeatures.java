@@ -1,0 +1,39 @@
+package com.github.solventj.milkbased.worldgen;
+
+import com.github.solventj.milkbased.MilkBased;
+import com.github.solventj.milkbased.block.ModBlocks;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+
+import java.util.List;
+
+public class ModPlacedFeatures {
+    public static final ResourceKey<PlacedFeature> CHEESEWOOD_PLACED_KEY = registerKey("cheesewood_placed");
+
+    public static void bootstrap(BootstrapContext<PlacedFeature> context) {
+        var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+
+        register(context, CHEESEWOOD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CHEESEWOOD_KEY),
+                VegetationPlacements.treePlacement(
+                        PlacementUtils.countExtra(3, 0.1f, 2),
+                        ModBlocks.CHEESE_SAPLING.get()));
+    }
+
+    public static ResourceKey<PlacedFeature> registerKey(String name) {
+        return ResourceKey.create(Registries.PLACED_FEATURE,
+                ResourceLocation.fromNamespaceAndPath(MilkBased.MOD_ID, name));
+    }
+
+    public static void register(BootstrapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key,
+                                Holder<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers) {
+        context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
+    }
+}
