@@ -17,18 +17,11 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> MILK_TAB =
             CREATIVE_TABS.register("milk_tab", () -> CreativeModeTab.builder()
                     .title(Component.literal("Milk Based"))
+                    .icon(ModBlocks.CHEESE_BLOCK::toStack)
                     .displayItems(((itemDisplayParameters, output) -> {
-                        for (var item : ModItems.ITEMS.getEntries()){
+                        for (var item : ModItems.ITEMS.getEntries()) {
                             output.accept(item.get());
                         }
-//                        output.accept(ModBlocks.CURD_BLOCK);
-//                        output.accept(ModBlocks.CHEESE_BLOCK);
-//                        output.accept(ModBlocks.CHEESE_LOG);
-//                        output.accept(ModBlocks.STRIPPED_CHEESE_LOG);
-//                        output.accept(ModBlocks.CHEESE_LEAVES);
-//                        output.accept(ModBlocks.CHEESE_SAPLING);
-//                        output.accept(ModBlocks.CHEESE_PLANKS);
-//                        output.accept(ModBlocks.BLUE_MOLD);
                     })).build());
 
     public static void register(IEventBus eventBus) {

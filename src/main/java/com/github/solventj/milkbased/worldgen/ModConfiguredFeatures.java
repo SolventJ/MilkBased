@@ -17,13 +17,13 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 
 public class ModConfiguredFeatures {
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CHEESEWOOD_KEY = registerKey("cheesewood");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CHEESEWOOD_TREE_KEY = registerKey("cheesewood_tree");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        register(context, CHEESEWOOD_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(ModBlocks.CHEESE_LOG.get()),
+        register(context, CHEESEWOOD_TREE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(ModBlocks.CHEESEWOOD_LOG.get()),
                 new StraightTrunkPlacer(4, 2, 0),
-                BlockStateProvider.simple(ModBlocks.CHEESE_LEAVES.get()),
+                BlockStateProvider.simple(ModBlocks.CHEESEWOOD_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1))
                 .dirt(BlockStateProvider.simple(ModBlocks.CHEESE_BLOCK.get())).build());

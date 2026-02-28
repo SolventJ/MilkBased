@@ -16,15 +16,17 @@ import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import java.util.List;
 
 public class ModPlacedFeatures {
-    public static final ResourceKey<PlacedFeature> CHEESEWOOD_PLACED_KEY = registerKey("cheesewood_placed");
+    public static final ResourceKey<PlacedFeature> CHEESEWOOD_TREE_PLACED_KEY =
+            registerKey("cheesewood_tree_placed");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
-        register(context, CHEESEWOOD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CHEESEWOOD_KEY),
+        register(context, CHEESEWOOD_TREE_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.CHEESEWOOD_TREE_KEY),
                 VegetationPlacements.treePlacement(
                         PlacementUtils.countExtra(3, 0.1f, 2),
-                        ModBlocks.CHEESE_SAPLING.get()));
+                        ModBlocks.CHEESEWOOD_SAPLING.get()));
     }
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {

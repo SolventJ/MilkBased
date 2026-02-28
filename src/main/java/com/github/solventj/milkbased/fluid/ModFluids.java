@@ -2,6 +2,7 @@ package com.github.solventj.milkbased.fluid;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
+import com.github.solventj.milkbased.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
@@ -25,7 +26,7 @@ public class ModFluids {
 
     public static final BaseFlowingFluid.Properties MILK_FLUID_PROPERTIES = new BaseFlowingFluid.Properties(
             ModFluidTypes.MILK_FLUID_TYPE, SOURCE_MILK_FLUID, FLOWING_MILK_FLUID)
-            .block(ModBlocks.MILK);
+            .block(ModBlocks.MILK).bucket(ModItems.MILK_BUCKET);
 
     public static void register(IEventBus eventBus) {
         FLUIDS.register(eventBus);

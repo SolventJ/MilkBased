@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.solventj.milkbased.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "milkbased.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "LevelRendererMixin",
+    "CauldronBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

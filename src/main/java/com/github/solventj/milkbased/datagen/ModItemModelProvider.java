@@ -2,11 +2,18 @@ package com.github.solventj.milkbased.datagen;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
+import com.github.solventj.milkbased.item.ModItems;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.util.Objects;
 
 public class ModItemModelProvider extends ItemModelProvider {
 
@@ -19,18 +26,53 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItem(ModBlocks.CURD_BLOCK.get());
         simpleBlockItem(ModBlocks.CHEESE_BLOCK.get());
 
-        simpleBlockItem(ModBlocks.CHEESE_LOG.get());
-        simpleBlockItem(ModBlocks.STRIPPED_CHEESE_LOG.get());
-        simpleBlockItem(ModBlocks.CHEESE_LEAVES.get());
-        flatItemFromBlockTexture(ModBlocks.CHEESE_SAPLING.getId());
-        simpleBlockItem(ModBlocks.CHEESE_PLANKS.get());
+        flatBlockItem(ModBlocks.CHEESEWOOD_SAPLING.get());
+        simpleBlockItem(ModBlocks.CHEESEWOOD_LEAVES.get());
+        simpleBlockItem(ModBlocks.CHEESEWOOD_LOG.get());
+        simpleBlockItem(ModBlocks.STRIPPED_CHEESEWOOD_LOG.get());
+        simpleBlockItem(ModBlocks.CHEESEWOOD.get());
+        simpleBlockItem(ModBlocks.STRIPPED_CHEESEWOOD.get());
 
-        flatItemFromBlockTexture(ModBlocks.BLUE_MOLD.getId());
+        simpleBlockItem(ModBlocks.CHEESE_PLANKS.get());
+        simpleBlockItem(ModBlocks.CHEESE_STAIRS.get());
+        simpleBlockItem(ModBlocks.CHEESE_SLAB.get());
+        basicFence(ModBlocks.CHEESE_FENCE.get(), ModBlocks.CHEESE_PLANKS.get());
+        simpleBlockItem(ModBlocks.CHEESE_FENCE_GATE.get());
+        basicItem(ModBlocks.CHEESE_DOOR.asItem());
+        basicTrapdoor(ModBlocks.CHEESE_TRAPDOOR.get());
+        simpleBlockItem(ModBlocks.CHEESE_PRESSURE_PLATE.get());
+        basicButton(ModBlocks.CHEESE_BUTTON.get(), ModBlocks.CHEESE_PLANKS.get());
+
+        basicItem(ModItems.CHEESE_SIGN.get());
+        basicItem(ModItems.CHEESE_HANGING_SIGN.get());
+
+        basicItem(ModItems.MILK_BUCKET.get());
+
+        flatBlockItem(ModBlocks.BLUE_MOLD.get());
     }
 
-    private void flatItemFromBlockTexture(ResourceLocation block) {
-        this.getBuilder(block.toString()).parent(new ModelFile.UncheckedModelFile("item/generated"))
-                .texture("layer0", ResourceLocation.fromNamespaceAndPath(
-                        block.getNamespace(), "block/" + block.getPath()));
+    private void flatBlockItem(Block block) {
+        singleTexture(blockKey(block).toString(), mcLoc("item/generated"),
+                "layer0", blockTexture(block));
+    }
+
+    private void basicFence(FenceBlock block, Block reference) {
+        fenceInventory(blockKey(block).toString(), blockTexture(reference));
+    }
+
+    private void basicButton(ButtonBlock block, Block reference) {
+        buttonInventory(blockKey(block).toString(), blockTexture(reference));
+    }
+
+    private void basicTrapdoor(TrapDoorBlock block) {
+        withExistingParent(blockKey(block).toString(), blockTexture(block).withSuffix("_bottom"));
+    }
+
+    private ResourceLocation blockKey(Block block) {
+        return Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(block));
+    }
+
+    private ResourceLocation blockTexture(Block block) {
+        return modLoc("block/" + blockKey(block).getPath());
     }
 }

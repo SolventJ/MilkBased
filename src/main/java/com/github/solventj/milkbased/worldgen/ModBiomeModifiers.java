@@ -13,15 +13,15 @@ import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class ModBiomeModifiers {
-    public static final ResourceKey<BiomeModifier> ADD_CHEESEWOOD = registerKey("add_cheesewood");
+    public static final ResourceKey<BiomeModifier> ADD_CHEESEWOOD_TREE = registerKey("add_cheesewood_tree");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
 
-        context.register(ADD_CHEESEWOOD, new BiomeModifiers.AddFeaturesBiomeModifier(
+        context.register(ADD_CHEESEWOOD_TREE, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.CHEESEWOOD_PLACED_KEY)),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.CHEESEWOOD_TREE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
     }
 
