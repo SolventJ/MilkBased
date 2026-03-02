@@ -1,7 +1,7 @@
-package com.github.solventj.milkbased.dimension;
+package com.github.solventj.milkbased.world.dimension;
 
 import com.github.solventj.milkbased.MilkBased;
-import com.github.solventj.milkbased.worldgen.ModBiomes;
+import com.github.solventj.milkbased.world.biome.ModBiomes;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;

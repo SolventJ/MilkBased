@@ -23,8 +23,18 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        basicItem(ModItems.MILK_BUCKET.get());
+        basicItem(ModItems.CHEESE_SIGN.get());
+        basicItem(ModItems.CHEESE_HANGING_SIGN.get());
+        basicItem(ModItems.CHECHIL.get());
+
         simpleBlockItem(ModBlocks.CURD_BLOCK.get());
+        simpleBlockItem(ModBlocks.CURD_STONE.get());
+        simpleBlockItem(ModBlocks.COBBLED_CURD_STONE.get());
         simpleBlockItem(ModBlocks.CHEESE_BLOCK.get());
+
+        flatBlockItem(ModBlocks.BLUE_MOLD.get());
+        simpleBlockItem(ModBlocks.MOLDY_COBBLED_CURD_STONE.get());
 
         flatBlockItem(ModBlocks.CHEESEWOOD_SAPLING.get());
         simpleBlockItem(ModBlocks.CHEESEWOOD_LEAVES.get());
@@ -42,13 +52,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicTrapdoor(ModBlocks.CHEESE_TRAPDOOR.get());
         simpleBlockItem(ModBlocks.CHEESE_PRESSURE_PLATE.get());
         basicButton(ModBlocks.CHEESE_BUTTON.get(), ModBlocks.CHEESE_PLANKS.get());
-
-        basicItem(ModItems.CHEESE_SIGN.get());
-        basicItem(ModItems.CHEESE_HANGING_SIGN.get());
-
-        basicItem(ModItems.MILK_BUCKET.get());
-
-        flatBlockItem(ModBlocks.BLUE_MOLD.get());
     }
 
     private void flatBlockItem(Block block) {

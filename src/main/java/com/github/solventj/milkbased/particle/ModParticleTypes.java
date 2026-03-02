@@ -15,6 +15,8 @@ public class ModParticleTypes {
 
     public static final Supplier<SimpleParticleType> MILK_RAIN = PARTICLES.register("milk_rain",
             () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> MILK_PORTAL = PARTICLES.register("milk_portal",
+            () -> new SimpleParticleType(false));
 
     public static void register(IEventBus eventBus) {
         PARTICLES.register(eventBus);

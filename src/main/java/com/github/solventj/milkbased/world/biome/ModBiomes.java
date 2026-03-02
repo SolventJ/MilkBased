@@ -1,6 +1,7 @@
-package com.github.solventj.milkbased.worldgen;
+package com.github.solventj.milkbased.world.biome;
 
 import com.github.solventj.milkbased.MilkBased;
+import com.github.solventj.milkbased.world.feature.ModPlacedFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -27,9 +28,12 @@ public class ModBiomes {
                         .foliageColorOverride(2865935)
                         .build())
                 .mobSpawnSettings(MobSpawnSettings.EMPTY)
-                .generationSettings(new BiomeGenerationSettings.PlainBuilder().addFeature(
-                        GenerationStep.Decoration.VEGETAL_DECORATION,
-                        placedFeatures.getOrThrow(ModPlacedFeatures.CHEESEWOOD_TREE_PLACED_KEY)).build())
+                .generationSettings(new BiomeGenerationSettings.PlainBuilder()
+                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
+                                placedFeatures.getOrThrow(ModPlacedFeatures.CHEESEWOOD_TREE_PLACED_KEY))
+                        .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION,
+                                placedFeatures.getOrThrow(ModPlacedFeatures.BLUE_MOLD))
+                        .build())
                 .build());
     }
 

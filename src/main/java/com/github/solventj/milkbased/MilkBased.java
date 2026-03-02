@@ -7,6 +7,7 @@ import com.github.solventj.milkbased.fluid.ModFluids;
 import com.github.solventj.milkbased.item.ModCreativeModeTabs;
 import com.github.solventj.milkbased.item.ModItems;
 import com.github.solventj.milkbased.particle.ModParticleTypes;
+import com.github.solventj.milkbased.util.ModPoiTypes;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import org.slf4j.Logger;
@@ -22,13 +23,14 @@ public class MilkBased {
         ModFluids.register(eventBus);
         ModFluidTypes.register(eventBus);
 
-        ModCreativeModeTabs.register(eventBus);
-
-        ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModItems.register(eventBus);
+
+        ModCreativeModeTabs.register(eventBus);
 
         ModBlockEntities.register(eventBus);
 
         ModParticleTypes.register(eventBus);
+        ModPoiTypes.register(eventBus);
     }
 }

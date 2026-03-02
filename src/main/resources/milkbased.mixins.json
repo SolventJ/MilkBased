@@ -5,10 +5,11 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "milkbased.refmap.json",
   "mixins": [
+    "EntityMixin"
   ],
   "client": [
-    "LevelRendererMixin",
-    "CauldronBlockMixin"
+    "CauldronBlockMixin",
+    "LevelRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

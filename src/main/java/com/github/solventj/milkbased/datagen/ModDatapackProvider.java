@@ -1,9 +1,11 @@
 package com.github.solventj.milkbased.datagen;
 
 import com.github.solventj.milkbased.MilkBased;
-import com.github.solventj.milkbased.dimension.ModDimensionTypes;
-import com.github.solventj.milkbased.dimension.ModDimensions;
-import com.github.solventj.milkbased.worldgen.*;
+import com.github.solventj.milkbased.world.dimension.ModDimensionTypes;
+import com.github.solventj.milkbased.world.dimension.ModDimensions;
+import com.github.solventj.milkbased.world.biome.ModBiomes;
+import com.github.solventj.milkbased.world.feature.ModConfiguredFeatures;
+import com.github.solventj.milkbased.world.feature.ModPlacedFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;

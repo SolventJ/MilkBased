@@ -1,15 +1,21 @@
-package com.github.solventj.milkbased.worldgen;
+package com.github.solventj.milkbased.world.feature;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.MultifaceBlock;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.MultifaceGrowthConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
@@ -18,6 +24,7 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlac
 
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> CHEESEWOOD_TREE_KEY = registerKey("cheesewood_tree");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BLUE_MOLD = registerKey("blue_mold");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         register(context, CHEESEWOOD_TREE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
@@ -27,6 +34,10 @@ public class ModConfiguredFeatures {
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1))
                 .dirt(BlockStateProvider.simple(ModBlocks.CHEESE_BLOCK.get())).build());
+        register(context, BLUE_MOLD, Feature.MULTIFACE_GROWTH, new MultifaceGrowthConfiguration(
+                (MultifaceBlock)ModBlocks.BLUE_MOLD.get(), 20, true, true,
+                true, 0.5F, HolderSet.direct(BuiltInRegistries.BLOCK::wrapAsHolder,
+                ModBlocks.CURD_STONE.get(), ModBlocks.CHEESE_BLOCK.get(), ModBlocks.CURD_BLOCK.get(), Blocks.DEEPSLATE)));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

@@ -2,11 +2,15 @@ package com.github.solventj.milkbased.datagen;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
+import com.github.solventj.milkbased.block.custom.MilkPortalBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.VariantBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -18,7 +22,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.CURD_BLOCK.get());
+        simpleBlock(ModBlocks.CURD_STONE.get());
+        simpleBlock(ModBlocks.COBBLED_CURD_STONE.get());
         simpleBlock(ModBlocks.CHEESE_BLOCK.get());
+
+        fluidBlock(ModBlocks.MILK.get());
+        fullCauldron(ModBlocks.MILK_CAULDRON.get());
+
+        glowLichenBlock(ModBlocks.BLUE_MOLD.get());
+        simpleBlock(ModBlocks.MOLDY_COBBLED_CURD_STONE.get());
 
         crossBlock(ModBlocks.CHEESEWOOD_SAPLING.get());
         simpleBlock(ModBlocks.CHEESEWOOD_LEAVES.get());
@@ -39,14 +51,26 @@ public class ModBlockStateProvider extends BlockStateProvider {
         pressurePlateBlock(ModBlocks.CHEESE_PRESSURE_PLATE.get(), cheesePlanks);
         buttonBlock(ModBlocks.CHEESE_BUTTON.get(), cheesePlanks);
 
-        signBlock(ModBlocks.CHEESE_SIGN.get(), ModBlocks.WALL_CHEESE_SIGN.get(), cheesePlanks);
-        hangingSignBlock(ModBlocks.CHEESE_HANGING_SIGN.get(), ModBlocks.WALL_CHEESE_HANGING_SIGN.get(),
+        signBlock(ModBlocks.CHEESE_SIGN.get(), ModBlocks.CHEESE_WALL_SIGN.get(), cheesePlanks);
+        hangingSignBlock(ModBlocks.CHEESE_HANGING_SIGN.get(), ModBlocks.CHEESE_WALL_HANGING_SIGN.get(),
                 blockTexture(ModBlocks.STRIPPED_CHEESEWOOD_LOG.get()));
 
-        fluidBlock(ModBlocks.MILK.get());
-        fullCauldron(ModBlocks.MILK_CAULDRON.get());
+        ResourceLocation portalLoc = blockTexture(ModBlocks.MILK_PORTAL.get());
+        ModelFile portalModel_ns = models()
+                .withExistingParent( portalLoc.getPath()+"_ns", mcLoc("block/nether_portal_ns"))
+                .texture("particle", portalLoc).texture("portal", portalLoc).renderType("translucent");
+        ModelFile portalModel_ew = models()
+                .withExistingParent( portalLoc.getPath()+"_ew", mcLoc("block/nether_portal_ew"))
+                .texture("particle", portalLoc).texture("portal", portalLoc).renderType("translucent");
 
-        glowLichenBlock(ModBlocks.BLUE_MOLD.get());
+        var portalVariantBuilder = getVariantBuilder(ModBlocks.MILK_PORTAL.get());
+        portalVariantBuilder.partialState().with(MilkPortalBlock.AXIS, Direction.Axis.X)
+                .modelForState().modelFile(portalModel_ns).addModel();
+        portalVariantBuilder.partialState().with(MilkPortalBlock.AXIS, Direction.Axis.Z)
+                .modelForState().modelFile(portalModel_ew).addModel();
+
+//        simpleBlock(ModBlocks.MILK_PORTAL.get(), models().getBuilder("milk_portal")
+//                .parent(models().getExistingFile(mcLoc("blocks/nether_portal"))));
     }
 
     public void crossBlock(Block block) {

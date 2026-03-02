@@ -1,7 +1,7 @@
 package com.github.solventj.milkbased.mixin;
 
 import com.github.solventj.milkbased.block.ModBlocks;
-import com.github.solventj.milkbased.dimension.ModDimensions;
+import com.github.solventj.milkbased.world.dimension.ModDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;

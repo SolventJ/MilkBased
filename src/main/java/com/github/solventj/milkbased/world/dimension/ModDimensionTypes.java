@@ -1,4 +1,4 @@
-package com.github.solventj.milkbased.dimension;
+package com.github.solventj.milkbased.world.dimension;
 
 import com.github.solventj.milkbased.MilkBased;
 import net.minecraft.core.registries.Registries;

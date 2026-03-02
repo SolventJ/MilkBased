@@ -20,7 +20,7 @@ public class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             ModSignBlockEntity::new,
                             ModBlocks.CHEESE_SIGN.get(),
-                            ModBlocks.WALL_CHEESE_SIGN.get()
+                            ModBlocks.CHEESE_WALL_SIGN.get()
                     ).build(null));
 
     public static final Supplier<BlockEntityType<ModHangingSignBlockEntity>> CHEESE_HANGING_SIGN =
@@ -28,7 +28,7 @@ public class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             ModHangingSignBlockEntity::new,
                             ModBlocks.CHEESE_HANGING_SIGN.get(),
-                            ModBlocks.WALL_CHEESE_HANGING_SIGN.get()
+                            ModBlocks.CHEESE_WALL_HANGING_SIGN.get()
                     ).build(null));
 
     public static void register(IEventBus eventBus) {

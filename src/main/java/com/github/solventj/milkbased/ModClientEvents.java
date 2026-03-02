@@ -3,6 +3,7 @@ package com.github.solventj.milkbased;
 import com.github.solventj.milkbased.block_entity.ModBlockEntities;
 import com.github.solventj.milkbased.fluid.ModFluidTypes;
 import com.github.solventj.milkbased.fluid.ModFluids;
+import com.github.solventj.milkbased.particle.MilkPortalParticle;
 import com.github.solventj.milkbased.particle.ModParticleTypes;
 import com.github.solventj.milkbased.util.ModWoodTypes;
 import com.mojang.blaze3d.shaders.FogShape;
@@ -10,7 +11,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.SplashParticle;
+import net.minecraft.client.particle.WaterDropParticle;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -34,9 +35,60 @@ public class ModClientEvents {
     @SubscribeEvent
     private static void onClientSetup(FMLClientSetupEvent event) {
         Sheets.addWoodType(ModWoodTypes.CHEESEWOOD);
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_MILK_FLUID.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_MILK_FLUID.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.MILK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_MILK.get(), RenderType.translucent());
     }
+
+    @SubscribeEvent
+    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(ModBlockEntities.CHEESE_SIGN.get(), SignRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.CHEESE_HANGING_SIGN.get(), HangingSignRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
+        event.registerSpriteSet(ModParticleTypes.MILK_RAIN.get(), WaterDropParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.MILK_PORTAL.get(), MilkPortalParticle.Provider::new);
+    }
+
+//    private static boolean _inMilk;
+//    private static boolean _isUnderMilk;
+//
+//    @SubscribeEvent
+//    private static void milkFluidSounds(ClientTickEvent.Post event) {
+//        Minecraft mc = Minecraft.getInstance();
+//        if (mc.player == null || mc.level == null) return;
+//
+//        LocalPlayer player = mc.player;
+//
+//        boolean inMilk = player.isInFluidType(ModFluidTypes.MILK_FLUID_TYPE.get());
+//        boolean isUnderMilk = player.getEyeInFluidType().equals(ModFluidTypes.MILK_FLUID_TYPE.get());
+//
+//        if (!_inMilk && inMilk) {
+//            Vec3 vec3 = player.getDeltaMovement();
+//            float f1 = Math.min(1.0F, (float) Math.sqrt(vec3.x * vec3.x * 0.2F + vec3.y * vec3.y + vec3.z * vec3.z * 0.2f) * 0.2f);
+//            player.playSound(SoundEvents.PLAYER_SPLASH, f1, 1.0F +
+//                    (RandomSource.create().nextFloat() - RandomSource.create().nextFloat()) * 0.4f);
+//        }
+//
+//        if (player.isSpectator()) return;
+//
+//        if (!_isUnderMilk && isUnderMilk) {
+//            player.level().playLocalSound(player.getX(), player.getY(), player.getZ(),
+//                    SoundEvents.AMBIENT_UNDERWATER_ENTER, SoundSource.AMBIENT, 1.0F, 1.0F, false);
+//            mc.getSoundManager()
+//                    .play(new UnderwaterAmbientSoundInstances.UnderwaterAmbientSoundInstance(player));
+//        }
+//
+//        if (_isUnderMilk && !isUnderMilk) {
+//            player.level().playLocalSound(player.getX(), player.getY(), player.getZ(),
+//                    SoundEvents.AMBIENT_UNDERWATER_EXIT, SoundSource.AMBIENT,
+//                    1.0F, 1.0F, false);
+//        }
+//
+//        _inMilk = inMilk;
+//        _isUnderMilk = isUnderMilk;
+//    }
 
     @SubscribeEvent
     private static void registerClientExtensions(RegisterClientExtensionsEvent event) {
@@ -91,16 +143,5 @@ public class ModClientEvents {
                 RenderSystem.setShaderFogShape(FogShape.CYLINDER);
             }
         }, ModFluidTypes.MILK_FLUID_TYPE.get());
-    }
-
-    @SubscribeEvent
-    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockEntities.CHEESE_SIGN.get(), SignRenderer::new);
-        event.registerBlockEntityRenderer(ModBlockEntities.CHEESE_HANGING_SIGN.get(), HangingSignRenderer::new);
-    }
-
-    @SubscribeEvent
-    public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModParticleTypes.MILK_RAIN.get(), SplashParticle.Provider::new);
     }
 }

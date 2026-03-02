@@ -1,4 +1,4 @@
-package com.github.solventj.milkbased.block.custom;
+package com.github.solventj.milkbased.block.custom.sign;
 
 import com.github.solventj.milkbased.block_entity.custom.ModSignBlockEntity;
 import net.minecraft.core.BlockPos;

@@ -1,7 +1,7 @@
 package com.github.solventj.milkbased.mixin;
 
 import com.github.solventj.milkbased.MilkBased;
-import com.github.solventj.milkbased.dimension.ModDimensions;
+import com.github.solventj.milkbased.world.dimension.ModDimensions;
 import com.github.solventj.milkbased.particle.ModParticleTypes;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;

@@ -1,7 +1,7 @@
-package com.github.solventj.milkbased.worldgen.tree;
+package com.github.solventj.milkbased.block.grower;
 
 import com.github.solventj.milkbased.MilkBased;
-import com.github.solventj.milkbased.worldgen.ModConfiguredFeatures;
+import com.github.solventj.milkbased.world.feature.ModConfiguredFeatures;
 import net.minecraft.world.level.block.grower.TreeGrower;
 
 import java.util.Optional;

@@ -18,14 +18,14 @@ public class ModFluids {
 
     public static final String MILK_ID = "milk";
 
-    public static final Supplier<FlowingFluid> SOURCE_MILK_FLUID = FLUIDS.register(MILK_ID,
+    public static final Supplier<FlowingFluid> MILK = FLUIDS.register(MILK_ID,
             () -> new BaseFlowingFluid.Source(ModFluids.MILK_FLUID_PROPERTIES));
 
-    public static final Supplier<FlowingFluid> FLOWING_MILK_FLUID = FLUIDS.register("flowing_" + MILK_ID,
+    public static final Supplier<FlowingFluid> FLOWING_MILK = FLUIDS.register("flowing_" + MILK_ID,
             () -> new BaseFlowingFluid.Flowing(ModFluids.MILK_FLUID_PROPERTIES));
 
     public static final BaseFlowingFluid.Properties MILK_FLUID_PROPERTIES = new BaseFlowingFluid.Properties(
-            ModFluidTypes.MILK_FLUID_TYPE, SOURCE_MILK_FLUID, FLOWING_MILK_FLUID)
+            ModFluidTypes.MILK_FLUID_TYPE, MILK, FLOWING_MILK)
             .block(ModBlocks.MILK).bucket(ModItems.MILK_BUCKET);
 
     public static void register(IEventBus eventBus) {

@@ -1,7 +1,7 @@
 {
   "aquifers_enabled": true,
   "default_block": {
-    "Name": "minecraft:stone"
+    "Name": "milkbased:curd_stone"
   },
   "default_fluid": {
     "Name": "milkbased:milk",
