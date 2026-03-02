@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "milkbased:block/cheese_planks",
-    "side": "milkbased:block/cheese_planks",
-    "top": "milkbased:block/cheese_planks"
-  }
-}

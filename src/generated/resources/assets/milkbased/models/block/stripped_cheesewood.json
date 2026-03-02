@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "milkbased:block/stripped_cheesewood_log",
-    "side": "milkbased:block/stripped_cheesewood_log"
-  }
-}

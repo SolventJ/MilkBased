@@ -1,8 +1,0 @@
-// 1.21.1	2026-03-02T09:43:47.9445206	Registries
-5315b6672f7cc9b4d1076b792a55ae2aed967844 data/milkbased/dimension/milk_dimension.json
-1ab4540880b0cfbe799994fc38a31a7ef101efa1 data/milkbased/dimension_type/milk_dimension.json
-2c6d8b0f4aed40e019d79f5dcb9b86541bf88d4d data/milkbased/worldgen/biome/cheese_biome.json
-9045cbcefa2d1feff7e04c57146d00da1802b63c data/milkbased/worldgen/configured_feature/blue_mold.json
-146b724eafd15fd0d5c0b340e346b2debf788ee3 data/milkbased/worldgen/configured_feature/cheesewood_tree.json
-dd4ab28aa2c7638d97b6917c9c5a2a34f241f7de data/milkbased/worldgen/placed_feature/blue_mold.json
-7078c50f41739b60957e1438d3d38061698c079c data/milkbased/worldgen/placed_feature/cheesewood_tree_placed.json

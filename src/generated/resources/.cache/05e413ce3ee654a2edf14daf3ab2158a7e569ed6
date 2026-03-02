@@ -1,6 +1,0 @@
-// 1.21.1	2026-03-02T09:43:47.9425173	Tags for minecraft:block mod id milkbased
-a94a2eaa51be5beecb35f4815956cd495ce0339a data/milkbased/tags/block/cheesewood_logs.json
-82b3f23d8e2a1d2ab523f25b291459ec2c718539 data/minecraft/tags/block/animals_spawnable_on.json
-f77408ca93829aeb6d348ff0f3c68d24a30df438 data/minecraft/tags/block/logs.json
-0997e59654dabf36be08f76733826caf5930592a data/minecraft/tags/block/mineable/pickaxe.json
-8f3329f7a3cdd2f1f09057f41f4c24f48bed42fc data/minecraft/tags/block/mineable/shovel.json
