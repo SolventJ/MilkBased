@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "milkbased:block/milk_portal_ns"
+    },
+    "axis=z": {
+      "model": "milkbased:block/milk_portal_ew"
+    }
+  }
+}

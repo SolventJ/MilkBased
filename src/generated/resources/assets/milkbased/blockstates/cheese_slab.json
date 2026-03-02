@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "milkbased:block/cheese_slab"
+    },
+    "type=double": {
+      "model": "milkbased:block/cheese_planks"
+    },
+    "type=top": {
+      "model": "milkbased:block/cheese_slab_top"
+    }
+  }
+}

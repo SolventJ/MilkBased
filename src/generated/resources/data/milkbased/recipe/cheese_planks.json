@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "milkbased:cheesewood_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "milkbased:cheese_planks"
+  }
+}

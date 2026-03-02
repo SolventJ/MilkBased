@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "milkbased:cobbled_milkstone"
+    },
+    {
+      "item": "milkbased:blue_mold"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "milkbased:moldy_cobbled_milkstone"
+  }
+}

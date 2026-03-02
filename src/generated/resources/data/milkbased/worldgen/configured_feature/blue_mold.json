@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:multiface_growth",
+  "config": {
+    "block": "milkbased:blue_mold",
+    "can_be_placed_on": [
+      "milkbased:milkstone",
+      "milkbased:cheese_block",
+      "milkbased:curd_block",
+      "minecraft:deepslate"
+    ],
+    "can_place_on_ceiling": true,
+    "can_place_on_floor": true,
+    "can_place_on_wall": true,
+    "chance_of_spreading": 0.5,
+    "search_range": 20
+  }
+}

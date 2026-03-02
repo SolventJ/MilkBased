@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "milkbased:block/cheesewood_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "milkbased:block/cheesewood_log"
+    },
+    "axis=z": {
+      "model": "milkbased:block/cheesewood_log_horizontal",
+      "x": 90
+    }
+  }
+}
