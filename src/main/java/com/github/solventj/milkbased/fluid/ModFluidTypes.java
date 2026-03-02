@@ -16,6 +16,7 @@ public class ModFluidTypes {
 
     public static final Supplier<FluidType> MILK_FLUID_TYPE = registerFluidType(
             ModFluids.MILK_ID, FluidType.Properties.create()
+                    .descriptionId("fluid_type.milkbased.milk")
                     .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
                     .density(1200).viscosity(2000).temperature(600).canConvertToSource(true)
                     .canHydrate(false).canExtinguish(true).canPushEntity(true).canSwim(true)

@@ -2,6 +2,7 @@ package com.github.solventj.milkbased.world.dimension;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.world.biome.ModBiomes;
+import com.github.solventj.milkbased.world.levelgen.ModNoiseGeneratorSettings;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -31,10 +32,10 @@ public class ModDimensions {
         var noise_settings = context.lookup(Registries.NOISE_SETTINGS);
 
         context.register(MILK_STEM_KEY, new LevelStem(
-                dimensionTypes.getOrThrow(ModDimensionTypes.MILK_DIMENSION_TYPE_KEY),
+                dimensionTypes.getOrThrow(ModDimensionTypes.MILK_KEY),
                 new NoiseBasedChunkGenerator(
                         new FixedBiomeSource(biomes.getOrThrow(ModBiomes.CHEESE_BIOME)),
-                        noise_settings.getOrThrow(NOISE_SETTINGS_TEMP))
+                        noise_settings.getOrThrow(ModNoiseGeneratorSettings.MILK_SETTINGS))
         ));
     }
 

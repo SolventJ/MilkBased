@@ -2,7 +2,7 @@ package com.github.solventj.milkbased.datagen;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
-import com.github.solventj.milkbased.data.tags.ModItemTags;
+import com.github.solventj.milkbased.datagen.tags.ModItemTags;
 import com.github.solventj.milkbased.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -22,11 +22,13 @@ public class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes(@NotNull RecipeOutput output) {
         planksFromLog(output, ModBlocks.CHEESE_PLANKS.asItem(), ModItemTags.CHEESEWOOD_LOGS, 4);
+        woodFromLogs(output, ModBlocks.CHEESEWOOD, ModBlocks.CHEESEWOOD_LOG);
+        woodFromLogs(output, ModBlocks.STRIPPED_CHEESEWOOD, ModBlocks.STRIPPED_CHEESEWOOD_LOG);
         smeltingResultFromBase(output, ModBlocks.MILKSTONE, ModBlocks.COBBLED_MILKSTONE);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MILKSTONE, 3)
                 .requires(Items.STONE, 3).requires(Items.MILK_BUCKET)
-                .unlockedBy("has_milk_bucket", has(ModItems.MILK_BUCKET))
+                .unlockedBy("has_milk_bucket", has(Items.MILK_BUCKET))
                 .save(output, getConversionRecipeName(ModBlocks.MILKSTONE, Items.STONE));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOLDY_COBBLED_MILKSTONE)
@@ -35,7 +37,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output, getConversionRecipeName(
                         ModBlocks.MOLDY_COBBLED_MILKSTONE, ModBlocks.BLUE_MOLD));
 
-        hangingSign(output, ModItems.CHEESE_HANGING_SIGN, ModBlocks.CHEESE_PLANKS);
+        hangingSign(output, ModItems.CHEESE_HANGING_SIGN, ModBlocks.STRIPPED_CHEESEWOOD_LOG);
         slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHEESE_SLAB, ModBlocks.CHEESE_PLANKS);
         pressurePlate(output, ModBlocks.CHEESE_PRESSURE_PLATE, ModBlocks.CHEESE_PLANKS);
 

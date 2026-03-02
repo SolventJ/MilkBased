@@ -16,6 +16,8 @@ public class ModEnLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         addDimension(ModDimensions.MILK_LEVEL_KEY, "Milk Dimension");
 
+        add("fluid_type.milkbased.milk", "Milk");
+
         addItem(ModItems.MILK_BUCKET, "Milk Bucket");
         addItem(ModItems.CHECHIL, "Chechil");
 

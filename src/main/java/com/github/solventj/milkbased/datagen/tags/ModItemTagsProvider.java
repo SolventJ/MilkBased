@@ -1,4 +1,4 @@
-package com.github.solventj.milkbased.data.tags;
+package com.github.solventj.milkbased.datagen.tags;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
@@ -23,6 +23,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
         copy(ModBlockTags.CHEESEWOOD_LOGS, ModItemTags.CHEESEWOOD_LOGS);
+        tag(ItemTags.LOGS).addTag(ModItemTags.CHEESEWOOD_LOGS);
         tag(ItemTags.STONE_TOOL_MATERIALS).add(ModBlocks.COBBLED_MILKSTONE.asItem());
+        tag(ItemTags.STONE_CRAFTING_MATERIALS).add(ModBlocks.COBBLED_MILKSTONE.asItem());
+        tag(ItemTags.PLANKS).add(ModBlocks.CHEESE_PLANKS.asItem());
+        tag(ItemTags.WOODEN_SLABS).add(ModBlocks.CHEESE_SLAB.asItem());
     }
 }

@@ -16,6 +16,8 @@ public class ModRuLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         addDimension(ModDimensions.MILK_LEVEL_KEY, "Молочное измерение");
 
+        add("fluid_type.milkbased.milk", "Молоко");
+
         addItem(ModItems.MILK_BUCKET, "Ведро молока");
         addItem(ModItems.CHECHIL, "Чечил");
 

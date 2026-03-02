@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -84,12 +85,18 @@ public class ModEvents {
     @SubscribeEvent
     private static void onToolModification(BlockEvent.BlockToolModificationEvent event) {
         if (!event.getItemAbility().name().equals("axe_strip")) return;
-        if (!event.getState().is(ModBlocks.CHEESEWOOD) && !event.getState().is(ModBlocks.CHEESEWOOD_LOG)) return;
+        BlockState state = event.getState();
 
-        BlockState newState = ModBlocks.STRIPPED_CHEESEWOOD_LOG.get().defaultBlockState()
-                .setValue(RotatedPillarBlock.AXIS, event.getState().getValue(RotatedPillarBlock.AXIS));
+        boolean isCheesewood = state.is(ModBlocks.CHEESEWOOD);
+        boolean isCheesewoodLog = state.is(ModBlocks.CHEESEWOOD_LOG);
+        if (!isCheesewood && !isCheesewoodLog) return;
 
-        event.setFinalState(newState);
+        Block newBlock = isCheesewood
+                ? ModBlocks.STRIPPED_CHEESEWOOD.get()
+                : ModBlocks.STRIPPED_CHEESEWOOD_LOG.get();
+
+        event.setFinalState(newBlock.defaultBlockState().setValue(
+                RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)));
 
         LevelAccessor levelAccessor = event.getLevel();
         if (levelAccessor.isClientSide()) return;

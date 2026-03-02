@@ -1,4 +1,4 @@
-package com.github.solventj.milkbased.data.tags;
+package com.github.solventj.milkbased.datagen.tags;
 
 import com.github.solventj.milkbased.MilkBased;
 import net.minecraft.core.registries.Registries;

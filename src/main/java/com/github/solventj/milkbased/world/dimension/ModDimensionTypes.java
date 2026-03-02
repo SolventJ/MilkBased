@@ -12,11 +12,11 @@ import net.minecraft.world.level.dimension.DimensionType;
 import java.util.OptionalLong;
 
 public class ModDimensionTypes {
-    public static final ResourceKey<DimensionType> MILK_DIMENSION_TYPE_KEY =
+    public static final ResourceKey<DimensionType> MILK_KEY =
             registerKey("milk_dimension");
 
     public static void bootstrap(BootstrapContext<DimensionType> context) {
-        context.register(MILK_DIMENSION_TYPE_KEY, new DimensionType(
+        context.register(MILK_KEY, new DimensionType(
                 OptionalLong.empty(),
                 true, false,
                 false, true, 1,

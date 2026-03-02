@@ -1,8 +1,8 @@
 package com.github.solventj.milkbased.datagen;
 
 import com.github.solventj.milkbased.MilkBased;
-import com.github.solventj.milkbased.data.tags.ModBlockTagsProvider;
-import com.github.solventj.milkbased.data.tags.ModItemTagsProvider;
+import com.github.solventj.milkbased.datagen.tags.ModBlockTagsProvider;
+import com.github.solventj.milkbased.datagen.tags.ModItemTagsProvider;
 import com.github.solventj.milkbased.datagen.language.ModEnLanguageProvider;
 import com.github.solventj.milkbased.datagen.language.ModRuLanguageProvider;
 import com.github.solventj.milkbased.datagen.model.ModBlockStateProvider;
