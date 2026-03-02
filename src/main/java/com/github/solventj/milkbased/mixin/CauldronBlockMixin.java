@@ -25,7 +25,7 @@ public class CauldronBlockMixin {
     @Inject(method = "handlePrecipitation", at = @At(value = "HEAD"), cancellable = true)
     private void onHandlePrecipitation(BlockState state, Level level, BlockPos pos, Biome.Precipitation precipitation,
                                        CallbackInfo callbackInfo) {
-        if (level.dimension() != ModDimensions.MILK_DIMENSION_LEVEL_KEY) return;
+        if (level.dimension() != ModDimensions.MILK_LEVEL_KEY) return;
         callbackInfo.cancel();
 
         if (!invokeShouldHandlePrecipitation(level, precipitation)

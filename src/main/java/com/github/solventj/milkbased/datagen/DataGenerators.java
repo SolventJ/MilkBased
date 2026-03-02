@@ -3,6 +3,10 @@ package com.github.solventj.milkbased.datagen;
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.data.tags.ModBlockTagsProvider;
 import com.github.solventj.milkbased.data.tags.ModItemTagsProvider;
+import com.github.solventj.milkbased.datagen.language.ModEnLanguageProvider;
+import com.github.solventj.milkbased.datagen.language.ModRuLanguageProvider;
+import com.github.solventj.milkbased.datagen.model.ModBlockStateProvider;
+import com.github.solventj.milkbased.datagen.model.ModItemModelProvider;
 import com.github.solventj.milkbased.particle.ModParticleProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -28,6 +32,9 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, fileHelper));
         generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, fileHelper));
         generator.addProvider(event.includeClient(), new ModParticleProvider(packOutput, fileHelper));
+
+        generator.addProvider(event.includeClient(), new ModEnLanguageProvider(packOutput));
+        generator.addProvider(event.includeClient(), new ModRuLanguageProvider(packOutput));
 
         var blockTagsProvider = new ModBlockTagsProvider(packOutput, lookupProvider, fileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);

@@ -1,17 +1,15 @@
 package com.github.solventj.milkbased.datagen;
 
+import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
-import com.github.solventj.milkbased.data.tags.ModBlockTags;
 import com.github.solventj.milkbased.data.tags.ModItemTags;
-import com.github.solventj.milkbased.data.tags.ModItemTagsProvider;
 import com.github.solventj.milkbased.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,10 +22,18 @@ public class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes(@NotNull RecipeOutput output) {
         planksFromLog(output, ModBlocks.CHEESE_PLANKS.asItem(), ModItemTags.CHEESEWOOD_LOGS, 4);
-        smeltingResultFromBase(output, ModBlocks.CURD_STONE, ModBlocks.COBBLED_CURD_STONE);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOLDY_COBBLED_CURD_STONE)
-                .requires(ModBlocks.COBBLED_CURD_STONE).requires(ModBlocks.BLUE_MOLD)
-                .unlockedBy("has_blue_mold", has(ModBlocks.BLUE_MOLD)).save(output);
+        smeltingResultFromBase(output, ModBlocks.MILKSTONE, ModBlocks.COBBLED_MILKSTONE);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MILKSTONE, 3)
+                .requires(Items.STONE, 3).requires(Items.MILK_BUCKET)
+                .unlockedBy("has_milk_bucket", has(ModItems.MILK_BUCKET))
+                .save(output, getConversionRecipeName(ModBlocks.MILKSTONE, Items.STONE));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOLDY_COBBLED_MILKSTONE)
+                .requires(ModBlocks.COBBLED_MILKSTONE).requires(ModBlocks.BLUE_MOLD)
+                .unlockedBy("has_blue_mold", has(ModBlocks.BLUE_MOLD))
+                .save(output, getConversionRecipeName(
+                        ModBlocks.MOLDY_COBBLED_MILKSTONE, ModBlocks.BLUE_MOLD));
 
         hangingSign(output, ModItems.CHEESE_HANGING_SIGN, ModBlocks.CHEESE_PLANKS);
         slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHEESE_SLAB, ModBlocks.CHEESE_PLANKS);
@@ -48,5 +54,25 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_planks", has(ModBlocks.CHEESE_PLANKS)).save(output);
         buttonBuilder(ModBlocks.CHEESE_BUTTON, cheesePlanks)
                 .unlockedBy("has_planks", has(ModBlocks.CHEESE_PLANKS)).save(output);
+    }
+
+    protected static void smeltingResultFromBase(@NotNull RecipeOutput recipeOutput, ItemLike result,
+                                                 ItemLike ingredient) {
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient),
+                RecipeCategory.BUILDING_BLOCKS, result, 0.1F, 200)
+                .unlockedBy(getHasName(ingredient), has(ingredient))
+                .save(recipeOutput, getSmeltingRecipeName(result));
+    }
+
+    protected static String getConversionRecipeName(ItemLike result, ItemLike ingredient) {
+        return modLoc(RecipeProvider.getConversionRecipeName(result, ingredient));
+    }
+
+    protected static String getSmeltingRecipeName(ItemLike item) {
+        return modLoc(RecipeProvider.getSmeltingRecipeName(item));
+    }
+
+    private static String modLoc(String string) {
+        return MilkBased.MOD_ID + ":" + string;
     }
 }

@@ -2,9 +2,7 @@ package com.github.solventj.milkbased.datagen;
 
 import com.github.solventj.milkbased.block.ModBlocks;
 import com.github.solventj.milkbased.item.ModItems;
-import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.HolderSet;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
@@ -22,15 +20,15 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.CURD_BLOCK.get());
-        add(ModBlocks.CURD_STONE.get(), block -> createSingleItemTableWithSilkTouch(
-                block, ModBlocks.COBBLED_CURD_STONE.get()));
-        dropSelf(ModBlocks.COBBLED_CURD_STONE.get());
+        add(ModBlocks.MILKSTONE.get(), block -> createSingleItemTableWithSilkTouch(
+                block, ModBlocks.COBBLED_MILKSTONE.get()));
+        dropSelf(ModBlocks.COBBLED_MILKSTONE.get());
         dropSelf(ModBlocks.CHEESE_BLOCK.get());
 
         dropOther(ModBlocks.MILK_CAULDRON.get(), Blocks.CAULDRON);
 
         dropSelf(ModBlocks.BLUE_MOLD.get());
-        dropSelf(ModBlocks.MOLDY_COBBLED_CURD_STONE.get());
+        dropSelf(ModBlocks.MOLDY_COBBLED_MILKSTONE.get());
 
         dropSelf(ModBlocks.CHEESEWOOD_SAPLING.get());
         add(ModBlocks.CHEESEWOOD_LEAVES.get(), leaves -> this.createLeavesDrops(

@@ -1,4 +1,4 @@
-package com.github.solventj.milkbased.datagen;
+package com.github.solventj.milkbased.datagen.model;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
@@ -7,10 +7,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.VariantBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -22,15 +20,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.CURD_BLOCK.get());
-        simpleBlock(ModBlocks.CURD_STONE.get());
-        simpleBlock(ModBlocks.COBBLED_CURD_STONE.get());
+        simpleBlock(ModBlocks.MILKSTONE.get());
+        simpleBlock(ModBlocks.COBBLED_MILKSTONE.get());
         simpleBlock(ModBlocks.CHEESE_BLOCK.get());
 
         fluidBlock(ModBlocks.MILK.get());
         fullCauldron(ModBlocks.MILK_CAULDRON.get());
 
         glowLichenBlock(ModBlocks.BLUE_MOLD.get());
-        simpleBlock(ModBlocks.MOLDY_COBBLED_CURD_STONE.get());
+        simpleBlock(ModBlocks.MOLDY_COBBLED_MILKSTONE.get());
 
         crossBlock(ModBlocks.CHEESEWOOD_SAPLING.get());
         simpleBlock(ModBlocks.CHEESEWOOD_LEAVES.get());

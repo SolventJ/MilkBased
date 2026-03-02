@@ -26,7 +26,7 @@ public class LevelRendererMixin {
             "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderTexture(ILnet/minecraft/resources/ResourceLocation;)V"))
     private void redirectSetShaderTexture(int texture, ResourceLocation originalTexture) {
         Level level = Minecraft.getInstance().level;
-        if (level != null && level.dimension() == ModDimensions.MILK_DIMENSION_LEVEL_KEY) {
+        if (level != null && level.dimension() == ModDimensions.MILK_LEVEL_KEY) {
             RenderSystem.setShaderTexture(texture, MILK_RAIN_LOCATION);
         } else RenderSystem.setShaderTexture(texture, originalTexture);
     }
@@ -35,7 +35,7 @@ public class LevelRendererMixin {
             "Lnet/minecraft/core/particles/ParticleTypes;RAIN:Lnet/minecraft/core/particles/SimpleParticleType;"))
     private SimpleParticleType redirectRainField() {
         Level level = Minecraft.getInstance().level;
-        if (level != null && level.dimension() == ModDimensions.MILK_DIMENSION_LEVEL_KEY) {
+        if (level != null && level.dimension() == ModDimensions.MILK_LEVEL_KEY) {
             return ModParticleTypes.MILK_RAIN.get();
         }
 

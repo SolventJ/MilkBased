@@ -37,15 +37,15 @@ public class ModBlocks {
                     .strength(0.6f)
                     .sound(SoundType.GRAVEL));
 
-    public static final DeferredBlock<Block> CURD_STONE = registerSimpleBlock(
-            "curd_stone", BlockBehaviour.Properties.of()
+    public static final DeferredBlock<Block> MILKSTONE = registerSimpleBlock(
+            "milkstone", BlockBehaviour.Properties.of()
                     .mapColor(MapColor.STONE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops()
                     .strength(1.5f, 6.0f));
 
-    public static final DeferredBlock<Block> COBBLED_CURD_STONE = registerSimpleBlock(
-            "cobbled_curd_stone", BlockBehaviour.Properties.of()
+    public static final DeferredBlock<Block> COBBLED_MILKSTONE = registerSimpleBlock(
+            "cobbled_milkstone", BlockBehaviour.Properties.of()
                     .mapColor(MapColor.STONE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops()
@@ -82,8 +82,8 @@ public class ModBlocks {
                     .ignitedByLava()
                     .pushReaction(PushReaction.DESTROY));
 
-    public static final DeferredBlock<Block> MOLDY_COBBLED_CURD_STONE = registerSimpleBlock(
-            "moldy_cobbled_curd_stone", BlockBehaviour.Properties.of()
+    public static final DeferredBlock<Block> MOLDY_COBBLED_MILKSTONE = registerSimpleBlock(
+            "moldy_cobbled_milkstone", BlockBehaviour.Properties.of()
                     .mapColor(MapColor.STONE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops()

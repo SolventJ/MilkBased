@@ -9,7 +9,6 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.MultifaceBlock;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -37,7 +36,7 @@ public class ModConfiguredFeatures {
         register(context, BLUE_MOLD, Feature.MULTIFACE_GROWTH, new MultifaceGrowthConfiguration(
                 (MultifaceBlock)ModBlocks.BLUE_MOLD.get(), 20, true, true,
                 true, 0.5F, HolderSet.direct(BuiltInRegistries.BLOCK::wrapAsHolder,
-                ModBlocks.CURD_STONE.get(), ModBlocks.CHEESE_BLOCK.get(), ModBlocks.CURD_BLOCK.get(), Blocks.DEEPSLATE)));
+                ModBlocks.MILKSTONE.get(), ModBlocks.CHEESE_BLOCK.get(), ModBlocks.CURD_BLOCK.get(), Blocks.DEEPSLATE)));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

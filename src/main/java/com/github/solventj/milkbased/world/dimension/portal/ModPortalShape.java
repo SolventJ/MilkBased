@@ -29,7 +29,7 @@ public class ModPortalShape {
     private int height;
     private final int width;
 
-    private static final Block FRAME_BLOCK = ModBlocks.CHEESE_BLOCK.get();
+    private static final Block FRAME_BLOCK = ModBlocks.MILKSTONE.get();
 
     public static Optional<ModPortalShape> findEmptyPortalShape(
             LevelAccessor level, BlockPos bottomLeft, Direction.Axis axis) {

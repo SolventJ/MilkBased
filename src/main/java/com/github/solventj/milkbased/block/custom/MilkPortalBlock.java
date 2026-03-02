@@ -136,13 +136,13 @@ public class MilkPortalBlock extends Block implements Portal {
     @Override
     public DimensionTransition getPortalDestination(
             ServerLevel level, @NotNull Entity entity, @NotNull BlockPos pos) {
-        ResourceKey<Level> resourcekey = level.dimension() == ModDimensions.MILK_DIMENSION_LEVEL_KEY
-                ? Level.OVERWORLD : ModDimensions.MILK_DIMENSION_LEVEL_KEY;
+        ResourceKey<Level> resourcekey = level.dimension() == ModDimensions.MILK_LEVEL_KEY
+                ? Level.OVERWORLD : ModDimensions.MILK_LEVEL_KEY;
         ServerLevel serverlevel = level.getServer().getLevel(resourcekey);
         if (serverlevel == null) {
             return null;
         } else {
-            boolean flag = serverlevel.dimension() == ModDimensions.MILK_DIMENSION_LEVEL_KEY;
+            boolean flag = serverlevel.dimension() == ModDimensions.MILK_LEVEL_KEY;
             WorldBorder worldborder = serverlevel.getWorldBorder();
             double d0 = DimensionType.getTeleportationScale(level.dimensionType(), serverlevel.dimensionType());
             BlockPos blockpos = worldborder.clampToBounds(entity.getX() * d0, entity.getY(), entity.getZ() * d0);

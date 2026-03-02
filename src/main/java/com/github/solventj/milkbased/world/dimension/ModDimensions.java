@@ -14,10 +14,10 @@ import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
 public class ModDimensions {
-    public static final ResourceKey<LevelStem> MILK_DIMENSION_STEM_KEY =
+    public static final ResourceKey<LevelStem> MILK_STEM_KEY =
             registerKey(Registries.LEVEL_STEM, "milk_dimension");
 
-    public static final ResourceKey<Level> MILK_DIMENSION_LEVEL_KEY =
+    public static final ResourceKey<Level> MILK_LEVEL_KEY =
             registerKey(Registries.DIMENSION, "milk_dimension");
 
     // TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP TEMP
@@ -30,7 +30,7 @@ public class ModDimensions {
         var biomes = context.lookup(Registries.BIOME);
         var noise_settings = context.lookup(Registries.NOISE_SETTINGS);
 
-        context.register(MILK_DIMENSION_STEM_KEY, new LevelStem(
+        context.register(MILK_STEM_KEY, new LevelStem(
                 dimensionTypes.getOrThrow(ModDimensionTypes.MILK_DIMENSION_TYPE_KEY),
                 new NoiseBasedChunkGenerator(
                         new FixedBiomeSource(biomes.getOrThrow(ModBiomes.CHEESE_BIOME)),

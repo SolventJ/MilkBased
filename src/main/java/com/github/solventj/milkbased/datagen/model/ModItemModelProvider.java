@@ -1,4 +1,4 @@
-package com.github.solventj.milkbased.datagen;
+package com.github.solventj.milkbased.datagen.model;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
@@ -29,12 +29,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.CHECHIL.get());
 
         simpleBlockItem(ModBlocks.CURD_BLOCK.get());
-        simpleBlockItem(ModBlocks.CURD_STONE.get());
-        simpleBlockItem(ModBlocks.COBBLED_CURD_STONE.get());
+        simpleBlockItem(ModBlocks.MILKSTONE.get());
+        simpleBlockItem(ModBlocks.COBBLED_MILKSTONE.get());
         simpleBlockItem(ModBlocks.CHEESE_BLOCK.get());
 
         flatBlockItem(ModBlocks.BLUE_MOLD.get());
-        simpleBlockItem(ModBlocks.MOLDY_COBBLED_CURD_STONE.get());
+        simpleBlockItem(ModBlocks.MOLDY_COBBLED_MILKSTONE.get());
 
         flatBlockItem(ModBlocks.CHEESEWOOD_SAPLING.get());
         simpleBlockItem(ModBlocks.CHEESEWOOD_LEAVES.get());

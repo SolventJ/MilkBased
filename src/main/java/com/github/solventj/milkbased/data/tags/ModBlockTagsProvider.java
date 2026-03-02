@@ -3,12 +3,8 @@ package com.github.solventj.milkbased.data.tags;
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -33,11 +29,13 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.LOGS).addTag(ModBlockTags.CHEESEWOOD_LOGS);
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
-                ModBlocks.CURD_STONE.get(),
-                ModBlocks.COBBLED_CURD_STONE.get(),
-                ModBlocks.MOLDY_COBBLED_CURD_STONE.get());
+                ModBlocks.MILKSTONE.get(),
+                ModBlocks.COBBLED_MILKSTONE.get(),
+                ModBlocks.MOLDY_COBBLED_MILKSTONE.get());
 
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.CURD_BLOCK.get());
+
+        tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(ModBlocks.CHEESE_BLOCK.get());
     }
 }

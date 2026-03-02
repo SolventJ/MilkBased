@@ -1,9 +1,11 @@
 package com.github.solventj.milkbased.data.tags;
 
 import com.github.solventj.milkbased.MilkBased;
+import com.github.solventj.milkbased.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -21,5 +23,6 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
         copy(ModBlockTags.CHEESEWOOD_LOGS, ModItemTags.CHEESEWOOD_LOGS);
+        tag(ItemTags.STONE_TOOL_MATERIALS).add(ModBlocks.COBBLED_MILKSTONE.asItem());
     }
 }

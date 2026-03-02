@@ -19,7 +19,7 @@ import java.util.Optional;
 public class ModPortalForcer {
     private static ServerLevel level;
 
-    private static final Block FRAME_BLOCK = ModBlocks.CHEESE_BLOCK.get();
+    private static final Block FRAME_BLOCK = ModBlocks.MILKSTONE.get();
 
     public ModPortalForcer(ServerLevel worldIn) {
         level = worldIn;

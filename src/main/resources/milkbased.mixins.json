@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "milkbased.refmap.json",
   "mixins": [
-    "EntityMixin"
+    "IEntityExtensionMixin"
   ],
   "client": [
     "CauldronBlockMixin",
