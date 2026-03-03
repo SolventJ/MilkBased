@@ -14,7 +14,7 @@ public class ModFluidTypes {
     public static final DeferredRegister<FluidType> FLUID_TYPES =
             DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, MilkBased.MOD_ID);
 
-    public static final Supplier<FluidType> MILK_FLUID_TYPE = registerFluidType(
+    public static final Supplier<FluidType> MILK_TYPE = registerFluidType(
             ModFluids.MILK_ID, FluidType.Properties.create()
                     .descriptionId("fluid_type.milkbased.milk")
                     .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)

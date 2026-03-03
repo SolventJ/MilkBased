@@ -1,6 +1,8 @@
 package com.github.solventj.milkbased;
 
 import com.github.solventj.milkbased.block.ModBlocks;
+import com.github.solventj.milkbased.fluid.ModFluidTypes;
+import com.github.solventj.milkbased.util.ModFluidInteractions;
 import com.github.solventj.milkbased.world.dimension.portal.ModPortalShape;
 import com.github.solventj.milkbased.item.ModItems;
 import com.github.solventj.milkbased.util.ModCauldronInteractions;
@@ -21,8 +23,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.Optional;
 
@@ -31,6 +38,7 @@ public class ModEvents {
     @SubscribeEvent
     private static void onCommonSetup(FMLCommonSetupEvent event) {
         ModCauldronInteractions.bootstrap();
+        ModFluidInteractions.bootstrap();
     }
 
     @SubscribeEvent

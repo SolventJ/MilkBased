@@ -20,10 +20,10 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.CURD_BLOCK.get());
-        add(ModBlocks.MILKSTONE.get(), block -> createSingleItemTableWithSilkTouch(
-                block, ModBlocks.COBBLED_MILKSTONE.get()));
+        otherWhenNotSilkTouch(ModBlocks.MILKSTONE.get(), ModBlocks.COBBLED_MILKSTONE.get());
         dropSelf(ModBlocks.COBBLED_MILKSTONE.get());
         dropSelf(ModBlocks.CHEESE_BLOCK.get());
+        dropSelf(ModBlocks.WHEY_BLOCK.get());
 
         dropOther(ModBlocks.MILK_CAULDRON.get(), Blocks.CAULDRON);
 
@@ -52,6 +52,13 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
         dropOther(ModBlocks.CHEESE_WALL_SIGN.get(), ModItems.CHEESE_SIGN.get());
         dropOther(ModBlocks.CHEESE_HANGING_SIGN.get(), ModItems.CHEESE_HANGING_SIGN.get());
         dropOther(ModBlocks.CHEESE_WALL_HANGING_SIGN.get(), ModItems.CHEESE_HANGING_SIGN.get());
+
+        dropSelf(ModBlocks.GORGONZOLA.get());
+        otherWhenNotSilkTouch(ModBlocks.GORGONZOLA_TURF.get(), ModBlocks.GORGONZOLA.get());
+    }
+
+    private void otherWhenNotSilkTouch(Block self, Block other) {
+        add(self, createSingleItemTableWithSilkTouch(self, other));
     }
 
     @Override

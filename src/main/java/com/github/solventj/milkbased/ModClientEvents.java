@@ -142,6 +142,6 @@ public class ModClientEvents {
                 RenderSystem.setShaderFogEnd(20.0f);
                 RenderSystem.setShaderFogShape(FogShape.CYLINDER);
             }
-        }, ModFluidTypes.MILK_FLUID_TYPE.get());
+        }, ModFluidTypes.MILK_TYPE.get());
     }
 }

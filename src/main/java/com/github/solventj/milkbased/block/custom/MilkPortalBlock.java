@@ -35,7 +35,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.portal.DimensionTransition;
@@ -47,7 +46,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class MilkPortalBlock extends Block implements Portal {
     public static final MapCodec<MilkPortalBlock> CODEC = simpleCodec(MilkPortalBlock::new);
-    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
     protected static final VoxelShape X_AXIS_AABB = Block.box(0.0, 0.0, 6.0, 16.0, 16.0, 10.0);
     protected static final VoxelShape Z_AXIS_AABB = Block.box(6.0, 0.0, 0.0, 10.0, 16.0, 16.0);
 
@@ -58,21 +56,18 @@ public class MilkPortalBlock extends Block implements Portal {
 
     public MilkPortalBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(AXIS, Direction.Axis.X));
+        this.registerDefaultState(this.stateDefinition.any().setValue(NetherPortalBlock.AXIS, Direction.Axis.X));
     }
 
     @Override
     protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos,
                                            @NotNull CollisionContext context) {
-        if (state.getValue(AXIS) == Direction.Axis.Z) {
+        if (state.getValue(NetherPortalBlock.AXIS) == Direction.Axis.Z) {
             return Z_AXIS_AABB;
         }
         return X_AXIS_AABB;
     }
 
-    /**
-     * Performs a random tick on a block.
-     */
     @Override
     protected void randomTick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos,
                               @NotNull RandomSource random) {
@@ -92,17 +87,12 @@ public class MilkPortalBlock extends Block implements Portal {
         }
     }
 
-    /**
-     * Update the provided state given the provided neighbor direction and neighbor state, returning a new state.
-     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
-     * Note that this method should ideally consider only the specific direction passed in.
-     */
     @Override
     protected @NotNull BlockState updateShape(
             BlockState state, Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor level,
             @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
         Direction.Axis facingAxis = facing.getAxis();
-        Direction.Axis stateAxis = state.getValue(AXIS);
+        Direction.Axis stateAxis = state.getValue(NetherPortalBlock.AXIS);
         boolean flag = stateAxis != facingAxis && facingAxis.isHorizontal();
         return !flag && !facingState.is(this) && !new ModPortalShape(level, currentPos, stateAxis).isComplete()
                 ? Blocks.AIR.defaultBlockState()
@@ -155,11 +145,11 @@ public class MilkPortalBlock extends Block implements Portal {
             ServerLevel level, Entity entity, BlockPos pos, BlockPos exitPos,
             boolean isMilkDim, WorldBorder worldBorder
     ) {
-        Optional<BlockPos> optional = findClosestPortalPosition(exitPos, isMilkDim, worldBorder, level);
+        Optional<BlockPos> closestPortalPosition = findClosestPortalPosition(exitPos, isMilkDim, worldBorder, level);
         BlockUtil.FoundRectangle foundRectangle;
         DimensionTransition.PostDimensionTransition dimensionTransition;
-        if (optional.isPresent()) {
-            BlockPos blockpos = optional.get();
+        if (closestPortalPosition.isPresent()) {
+            BlockPos blockpos = closestPortalPosition.get();
             BlockState blockstate = level.getBlockState(blockpos);
             foundRectangle = BlockUtil.getLargestRectangleAround(
                     blockpos,
@@ -172,16 +162,15 @@ public class MilkPortalBlock extends Block implements Portal {
             dimensionTransition = DimensionTransition.PLAY_PORTAL_SOUND
                     .then(e -> e.placePortalTicket(blockpos));
         } else {
-            Direction.Axis axis = entity.level().getBlockState(pos).getOptionalValue(AXIS)
+            Direction.Axis axis = entity.level().getBlockState(pos).getOptionalValue(NetherPortalBlock.AXIS)
                     .orElse(Direction.Axis.X);
-//            Optional<BlockUtil.FoundRectangle> optional1 = createPortal(exitPos, axis, level);
-            Optional<BlockUtil.FoundRectangle> optional1 = new ModPortalForcer(level).createPortal(exitPos, axis);
-            if (optional1.isEmpty()) {
+            Optional<BlockUtil.FoundRectangle> portal = new ModPortalForcer(level).createPortal(exitPos, axis);
+            if (portal.isEmpty()) {
                 MilkBased.LOGGER.error("Unable to create a portal, likely target out of world border");
                 return null;
             }
 
-            foundRectangle = optional1.get();
+            foundRectangle = portal.get();
             dimensionTransition = DimensionTransition.PLAY_PORTAL_SOUND
                     .then(DimensionTransition.PLACE_PORTAL_TICKET);
         }
@@ -269,9 +258,6 @@ public class MilkPortalBlock extends Block implements Portal {
         return Portal.Transition.CONFUSION;
     }
 
-    /**
-     * Called periodically clientside on blocks near the player to show effects (like furnace fire particles).
-     */
     @Override
     public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos,
                             RandomSource random) {
@@ -315,15 +301,12 @@ public class MilkPortalBlock extends Block implements Portal {
         return ItemStack.EMPTY;
     }
 
-    /**
-     * Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed blockstate.
-     */
     @Override
     protected @NotNull BlockState rotate(@NotNull BlockState state, Rotation rot) {
         return switch (rot) {
-            case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> switch (state.getValue(AXIS)) {
-                case Z -> state.setValue(AXIS, Direction.Axis.X);
-                case X -> state.setValue(AXIS, Direction.Axis.Z);
+            case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> switch (state.getValue(NetherPortalBlock.AXIS)) {
+                case Z -> state.setValue(NetherPortalBlock.AXIS, Direction.Axis.X);
+                case X -> state.setValue(NetherPortalBlock.AXIS, Direction.Axis.Z);
                 default -> state;
             };
             default -> state;
@@ -332,6 +315,6 @@ public class MilkPortalBlock extends Block implements Portal {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AXIS);
+        builder.add(NetherPortalBlock.AXIS);
     }
 }

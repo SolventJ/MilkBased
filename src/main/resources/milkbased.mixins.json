@@ -6,7 +6,7 @@
   "refmap": "milkbased.refmap.json",
   "mixins": [
     "IEntityExtensionMixin",
-    "NoiseRouterDataMixin"
+    "LavaFluidMixin"
   ],
   "client": [
     "CauldronBlockMixin",

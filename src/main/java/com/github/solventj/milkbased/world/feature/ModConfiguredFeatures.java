@@ -33,6 +33,7 @@ public class ModConfiguredFeatures {
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1))
                 .dirt(BlockStateProvider.simple(ModBlocks.CHEESE_BLOCK.get())).build());
+
         register(context, BLUE_MOLD, Feature.MULTIFACE_GROWTH, new MultifaceGrowthConfiguration(
                 (MultifaceBlock)ModBlocks.BLUE_MOLD.get(), 20, true, true,
                 true, 0.5F, HolderSet.direct(BuiltInRegistries.BLOCK::wrapAsHolder,

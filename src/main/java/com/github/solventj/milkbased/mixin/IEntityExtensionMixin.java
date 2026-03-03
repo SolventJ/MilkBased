@@ -17,7 +17,7 @@ public interface IEntityExtensionMixin {
         if (type != NeoForgeMod.WATER_TYPE.value()) return;
         var obj = (IEntityExtension) this;
         var h1 = obj.getFluidTypeHeight(type) > 0;
-        var h2 = obj.getFluidTypeHeight(ModFluidTypes.MILK_FLUID_TYPE.get()) > 0;
+        var h2 = obj.getFluidTypeHeight(ModFluidTypes.MILK_TYPE.get()) > 0;
         callbackInfo.setReturnValue(h1 || h2);
     }
 
@@ -26,6 +26,6 @@ public interface IEntityExtensionMixin {
         if (type != NeoForgeMod.WATER_TYPE.value()) return;
         var obj = (IEntityExtension) this;
         var inType = obj.getEyeInFluidType();
-        callbackInfo.setReturnValue(inType == type || inType == ModFluidTypes.MILK_FLUID_TYPE.get());
+        callbackInfo.setReturnValue(inType == type || inType == ModFluidTypes.MILK_TYPE.get());
     }
 }

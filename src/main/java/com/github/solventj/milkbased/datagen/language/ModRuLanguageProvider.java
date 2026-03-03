@@ -25,6 +25,7 @@ public class ModRuLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.MILKSTONE, "Молокамень");
         addBlock(ModBlocks.COBBLED_MILKSTONE, "Колотый молокамень");
         addBlock(ModBlocks.CHEESE_BLOCK, "Блок сыра");
+        addBlock(ModBlocks.WHEY_BLOCK, "Блок молочной сыворотки");
         addBlock(ModBlocks.MILK, "Молоко");
         addBlock(ModBlocks.MILK_CAULDRON, "Котёл с молоком");
         addBlock(ModBlocks.BLUE_MOLD, "Синяя плесень");
@@ -47,5 +48,7 @@ public class ModRuLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.CHEESE_SIGN, "Сырная табличка");
         addBlock(ModBlocks.CHEESE_HANGING_SIGN, "Сырная подвисная табличка");
         addBlock(ModBlocks.MILK_PORTAL, "Молочный портал");
+        addBlock(ModBlocks.GORGONZOLA, "Горгонзола");
+        addBlock(ModBlocks.GORGONZOLA_TURF, "Горгонзольный дёрн");
     }
 }

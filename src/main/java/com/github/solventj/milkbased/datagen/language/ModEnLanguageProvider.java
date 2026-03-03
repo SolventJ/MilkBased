@@ -25,6 +25,7 @@ public class ModEnLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.MILKSTONE, "Milkstone");
         addBlock(ModBlocks.COBBLED_MILKSTONE, "Cobbled Milkstone");
         addBlock(ModBlocks.CHEESE_BLOCK, "Cheese Block");
+        addBlock(ModBlocks.WHEY_BLOCK, "Whey Block");
         addBlock(ModBlocks.MILK, "Milk");
         addBlock(ModBlocks.MILK_CAULDRON, "Milk Cauldron");
         addBlock(ModBlocks.BLUE_MOLD, "Blue Mold");
@@ -47,5 +48,7 @@ public class ModEnLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.CHEESE_SIGN, "Cheese Sign");
         addBlock(ModBlocks.CHEESE_HANGING_SIGN, "Cheese Hanging Sign");
         addBlock(ModBlocks.MILK_PORTAL, "Milk Portal");
+        addBlock(ModBlocks.GORGONZOLA, "Gorgonzola");
+        addBlock(ModBlocks.GORGONZOLA_TURF, "Gorgonzola Turf");
     }
 }

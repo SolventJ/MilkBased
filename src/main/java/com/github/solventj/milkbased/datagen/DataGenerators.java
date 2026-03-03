@@ -2,6 +2,7 @@ package com.github.solventj.milkbased.datagen;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.datagen.tags.ModBlockTagsProvider;
+import com.github.solventj.milkbased.datagen.tags.ModFluidTagsProvider;
 import com.github.solventj.milkbased.datagen.tags.ModItemTagsProvider;
 import com.github.solventj.milkbased.datagen.language.ModEnLanguageProvider;
 import com.github.solventj.milkbased.datagen.language.ModRuLanguageProvider;
@@ -41,6 +42,7 @@ public class DataGenerators {
 
         generator.addProvider(event.includeServer(), new ModItemTagsProvider(
                 packOutput, lookupProvider, blockTagsProvider.contentsGetter(), fileHelper));
+        generator.addProvider(event.includeServer(), new ModFluidTagsProvider(packOutput, lookupProvider, fileHelper));
 
         generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new LootTableProvider(

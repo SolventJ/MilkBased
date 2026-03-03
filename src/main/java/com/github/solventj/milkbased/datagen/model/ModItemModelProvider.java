@@ -32,6 +32,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItem(ModBlocks.MILKSTONE.get());
         simpleBlockItem(ModBlocks.COBBLED_MILKSTONE.get());
         simpleBlockItem(ModBlocks.CHEESE_BLOCK.get());
+        simpleBlockItem(ModBlocks.WHEY_BLOCK.get());
 
         flatBlockItem(ModBlocks.BLUE_MOLD.get());
         simpleBlockItem(ModBlocks.MOLDY_COBBLED_MILKSTONE.get());
@@ -52,6 +53,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicTrapdoor(ModBlocks.CHEESE_TRAPDOOR.get());
         simpleBlockItem(ModBlocks.CHEESE_PRESSURE_PLATE.get());
         basicButton(ModBlocks.CHEESE_BUTTON.get(), ModBlocks.CHEESE_PLANKS.get());
+
+        simpleBlockItem(ModBlocks.GORGONZOLA.get());
+        simpleBlockItem(ModBlocks.GORGONZOLA_TURF.get());
     }
 
     private void flatBlockItem(Block block) {

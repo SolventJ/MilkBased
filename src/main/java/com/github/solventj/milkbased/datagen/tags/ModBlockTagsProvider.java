@@ -24,17 +24,29 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModBlocks.CHEESEWOOD_LOG.get(),
                 ModBlocks.STRIPPED_CHEESEWOOD_LOG.get(),
                 ModBlocks.CHEESEWOOD.get(),
-                ModBlocks.STRIPPED_CHEESEWOOD.get());
+                ModBlocks.STRIPPED_CHEESEWOOD.get()
+        );
+
+        tag(ModBlockTags.CHEESEWOOD_SOIL).add(
+                ModBlocks.CHEESE_BLOCK.get(),
+                ModBlocks.GORGONZOLA.get(),
+                ModBlocks.GORGONZOLA_TURF.get()
+        );
 
         tag(BlockTags.LOGS).addTag(ModBlockTags.CHEESEWOOD_LOGS);
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 ModBlocks.MILKSTONE.get(),
                 ModBlocks.COBBLED_MILKSTONE.get(),
-                ModBlocks.MOLDY_COBBLED_MILKSTONE.get());
+                ModBlocks.MOLDY_COBBLED_MILKSTONE.get()
+        );
 
-        tag(BlockTags.MINEABLE_WITH_SHOVEL)
-                .add(ModBlocks.CURD_BLOCK.get());
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
+                ModBlocks.CHEESE_BLOCK.get(),
+                ModBlocks.CURD_BLOCK.get(),
+                ModBlocks.GORGONZOLA.get(),
+                ModBlocks.GORGONZOLA_TURF.get()
+        );
 
         tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(ModBlocks.CHEESE_BLOCK.get());
     }

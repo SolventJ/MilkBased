@@ -58,6 +58,13 @@ public class ModBlocks {
                     .strength(0.6f)
                     .sound(SoundType.FROGLIGHT));
 
+    public static final DeferredBlock<Block> WHEY_BLOCK = registerBlock(
+            "whey_block", HalfTransparentBlock::new, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    .strength(0.1f)
+                    .noOcclusion()
+                    .sound(SoundType.HONEY_BLOCK));
+
     public static final DeferredBlock<LiquidBlock> MILK = BLOCKS.register(ModFluids.MILK_ID,
             () -> new LiquidBlock(ModFluids.MILK.get(), BlockBehaviour.Properties.of()
                     .mapColor(MapColor.SNOW)
@@ -212,6 +219,20 @@ public class ModBlocks {
                     .lightLevel(state -> 11)
                     .pushReaction(PushReaction.BLOCK)
                     .noLootTable());
+
+    public static final DeferredBlock<Block> GORGONZOLA =
+            registerSimpleBlock("gorgonzola", BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.QUARTZ)
+                    .instrument(NoteBlockInstrument.COW_BELL)
+                    .strength(0.45f)
+                    .sound(SoundType.FROGLIGHT));
+
+    public static final DeferredBlock<Block> GORGONZOLA_TURF =
+            registerSimpleBlock("gorgonzola_turf", BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.GLOW_LICHEN)
+                    .instrument(NoteBlockInstrument.COW_BELL)
+                    .strength(0.5f)
+                    .sound(SoundType.FROGLIGHT));
 
     public static <B extends Block> DeferredBlock<B> registerBlock(String name, Supplier<B> bSupplier) {
         DeferredBlock<B> block = BLOCKS.register(name, bSupplier);

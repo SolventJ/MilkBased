@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -159,7 +160,7 @@ public class ModPortalShape {
     }
 
     public void createPortalBlocks() {
-        BlockState blockstate = ModBlocks.MILK_PORTAL.get().defaultBlockState().setValue(MilkPortalBlock.AXIS, axis);
+        BlockState blockstate = ModBlocks.MILK_PORTAL.get().defaultBlockState().setValue(NetherPortalBlock.AXIS, axis);
         BlockPos.betweenClosed(bottomLeft, bottomLeft
                         .relative(Direction.UP, height - 1)
                         .relative(rightDir, width - 1))

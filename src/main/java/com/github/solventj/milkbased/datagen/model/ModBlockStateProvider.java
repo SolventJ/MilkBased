@@ -2,7 +2,6 @@ package com.github.solventj.milkbased.datagen.model;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
-import com.github.solventj.milkbased.block.custom.MilkPortalBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -23,6 +22,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.MILKSTONE.get());
         simpleBlock(ModBlocks.COBBLED_MILKSTONE.get());
         simpleBlock(ModBlocks.CHEESE_BLOCK.get());
+        simpleTranslucentBlock(ModBlocks.WHEY_BLOCK.get());
 
         fluidBlock(ModBlocks.MILK.get());
         fullCauldron(ModBlocks.MILK_CAULDRON.get());
@@ -53,31 +53,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
         hangingSignBlock(ModBlocks.CHEESE_HANGING_SIGN.get(), ModBlocks.CHEESE_WALL_HANGING_SIGN.get(),
                 blockTexture(ModBlocks.STRIPPED_CHEESEWOOD_LOG.get()));
 
-        ResourceLocation portalLoc = blockTexture(ModBlocks.MILK_PORTAL.get());
-        ModelFile portalModel_ns = models()
-                .withExistingParent( portalLoc.getPath()+"_ns", mcLoc("block/nether_portal_ns"))
-                .texture("particle", portalLoc).texture("portal", portalLoc).renderType("translucent");
-        ModelFile portalModel_ew = models()
-                .withExistingParent( portalLoc.getPath()+"_ew", mcLoc("block/nether_portal_ew"))
-                .texture("particle", portalLoc).texture("portal", portalLoc).renderType("translucent");
+        netherPortalBlock(ModBlocks.MILK_PORTAL.get());
 
-        var portalVariantBuilder = getVariantBuilder(ModBlocks.MILK_PORTAL.get());
-        portalVariantBuilder.partialState().with(MilkPortalBlock.AXIS, Direction.Axis.X)
-                .modelForState().modelFile(portalModel_ns).addModel();
-        portalVariantBuilder.partialState().with(MilkPortalBlock.AXIS, Direction.Axis.Z)
-                .modelForState().modelFile(portalModel_ew).addModel();
-
-//        simpleBlock(ModBlocks.MILK_PORTAL.get(), models().getBuilder("milk_portal")
-//                .parent(models().getExistingFile(mcLoc("blocks/nether_portal"))));
+        simpleBlock(ModBlocks.GORGONZOLA.get());
+        grassBlock(ModBlocks.GORGONZOLA_TURF.get(), ModBlocks.GORGONZOLA.get());
     }
 
     public void crossBlock(Block block) {
         var texture = blockTexture(block);
-        simpleBlock(block, models()
-                .getBuilder(texture.getPath())
-                .parent(models().getExistingFile(mcLoc("block/cross")))
-                .renderType("cutout")
-                .texture("cross", texture));
+        simpleBlock(block, models().cross(texture.getPath(), texture)
+                .renderType("cutout"));
+    }
+
+    private void simpleTranslucentBlock(Block block) {
+        this.simpleBlock(block, models()
+                .cubeAll(blockTexture(block).getPath(), this.blockTexture(block))
+                .renderType("translucent"));
+    }
+
+    private void grassBlock(Block block, Block bottomBlock) {
+        var loc = blockTexture(block);
+        var side = loc.withSuffix("_side");
+        var top = loc.withSuffix("_top");
+        var bottom = blockTexture(bottomBlock);
+        simpleBlock(block, models().cubeBottomTop(loc.getPath(), side, bottom, top));
     }
 
     public void fluidBlock(Block block) {
@@ -98,25 +97,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void basicDoor(DoorBlock block) {
         var location = blockTexture(block);
-        doorBlock(block, location.withSuffix("_bottom"), location.withSuffix("_top"));
-
-        models().getBuilder(location + "_bottom_left").renderType("cutout");
-        models().getBuilder(location + "_bottom_left_open").renderType("cutout");
-        models().getBuilder(location + "_bottom_right").renderType("cutout");
-        models().getBuilder(location + "_bottom_right_open").renderType("cutout");
-        models().getBuilder(location + "_top_left").renderType("cutout");
-        models().getBuilder(location + "_top_left_open").renderType("cutout");
-        models().getBuilder(location + "_top_right").renderType("cutout");
-        models().getBuilder(location + "_top_right_open").renderType("cutout");
+        var bottom = location.withSuffix("_bottom");
+        var top = location.withSuffix("_top");
+        doorBlockWithRenderType(block, bottom, top, "cutout");
     }
 
     private void basicTrapDoor(TrapDoorBlock block) {
         var texture = blockTexture(block);
-        trapdoorBlock(block, texture, true);
+        trapdoorBlockWithRenderType(block, texture, true, "cutout");
+    }
 
-        models().getBuilder(texture + "_bottom").renderType("cutout");
-        models().getBuilder(texture + "_top").renderType("cutout");
-        models().getBuilder(texture + "_open").renderType("cutout");
+    private void netherPortalBlock(Block block) {
+        ResourceLocation portalLoc = blockTexture(block);
+        ModelFile portalModel_ns = models()
+                .withExistingParent(portalLoc.getPath() + "_ns", mcLoc("block/nether_portal_ns"))
+                .texture("particle", portalLoc).texture("portal", portalLoc).renderType("translucent");
+        ModelFile portalModel_ew = models()
+                .withExistingParent(portalLoc.getPath() + "_ew", mcLoc("block/nether_portal_ew"))
+                .texture("particle", portalLoc).texture("portal", portalLoc).renderType("translucent");
+
+        var portalVariantBuilder = getVariantBuilder(block);
+        portalVariantBuilder.partialState().with(NetherPortalBlock.AXIS, Direction.Axis.X)
+                .modelForState().modelFile(portalModel_ns).addModel();
+        portalVariantBuilder.partialState().with(NetherPortalBlock.AXIS, Direction.Axis.Z)
+                .modelForState().modelFile(portalModel_ew).addModel();
     }
 
     private void glowLichenBlock(Block block) {

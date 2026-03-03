@@ -1,6 +1,7 @@
 package com.github.solventj.milkbased.block.custom;
 
 import com.github.solventj.milkbased.block.ModBlocks;
+import com.github.solventj.milkbased.datagen.tags.ModBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.SaplingBlock;
@@ -16,6 +17,6 @@ public class CheesewoodSapling extends SaplingBlock {
     @Override
     protected boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
         BlockState belowBlockState = level.getBlockState(pos.below());
-        return belowBlockState.is(ModBlocks.CHEESE_BLOCK);
+        return belowBlockState.is(ModBlockTags.CHEESEWOOD_SOIL);
     }
 }

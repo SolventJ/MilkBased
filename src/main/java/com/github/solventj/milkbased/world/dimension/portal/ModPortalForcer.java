@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.NetherPortalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -113,7 +114,7 @@ public class ModPortalForcer {
             }
         }
 
-        BlockState blockstate = ModBlocks.MILK_PORTAL.get().defaultBlockState().setValue(MilkPortalBlock.AXIS, axis);
+        BlockState blockstate = ModBlocks.MILK_PORTAL.get().defaultBlockState().setValue(NetherPortalBlock.AXIS, axis);
 
         for(int k2 = 0; k2 < 2; ++k2) {
             for(int l2 = 0; l2 < 3; ++l2) {
