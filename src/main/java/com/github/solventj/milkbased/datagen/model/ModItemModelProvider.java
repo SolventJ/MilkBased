@@ -26,6 +26,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.MILK_BUCKET.get());
         basicItem(ModItems.CHEESE_SIGN.get());
         basicItem(ModItems.CHEESE_HANGING_SIGN.get());
+        basicItem(ModItems.PLOMBIR_SIGN.get());
+        basicItem(ModItems.PLOMBIR_HANGING_SIGN.get());
         basicItem(ModItems.CHECHIL.get());
 
         simpleBlockItem(ModBlocks.CURD_BLOCK.get());
@@ -56,6 +58,25 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         simpleBlockItem(ModBlocks.GORGONZOLA.get());
         simpleBlockItem(ModBlocks.GORGONZOLA_TURF.get());
+
+        simpleBlockItem(ModBlocks.PLOMBIR_SNOW.get());
+
+        flatBlockItem(ModBlocks.PLOMBIR_SAPLING.get());
+        simpleBlockItem(ModBlocks.PLOMBIR_LEAVES.get());
+        simpleBlockItem(ModBlocks.PLOMBIR_LOG.get());
+        simpleBlockItem(ModBlocks.STRIPPED_PLOMBIR_LOG.get());
+        simpleBlockItem(ModBlocks.PLOMBIR_WOOD.get());
+        simpleBlockItem(ModBlocks.STRIPPED_PLOMBIR_WOOD.get());
+
+        simpleBlockItem(ModBlocks.PLOMBIR_PLANKS.get());
+        simpleBlockItem(ModBlocks.PLOMBIR_STAIRS.get());
+        simpleBlockItem(ModBlocks.PLOMBIR_SLAB.get());
+        basicFence(ModBlocks.PLOMBIR_FENCE.get(), ModBlocks.PLOMBIR_PLANKS.get());
+        simpleBlockItem(ModBlocks.PLOMBIR_FENCE_GATE.get());
+        basicItem(ModBlocks.PLOMBIR_DOOR.asItem());
+        basicTrapdoor(ModBlocks.PLOMBIR_TRAPDOOR.get());
+        simpleBlockItem(ModBlocks.PLOMBIR_PRESSURE_PLATE.get());
+        basicButton(ModBlocks.PLOMBIR_BUTTON.get(), ModBlocks.PLOMBIR_PLANKS.get());
     }
 
     private void flatBlockItem(Block block) {

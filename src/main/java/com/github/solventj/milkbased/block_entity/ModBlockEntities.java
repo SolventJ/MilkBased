@@ -15,20 +15,24 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MilkBased.MOD_ID);
 
-    public static final Supplier<BlockEntityType<ModSignBlockEntity>> CHEESE_SIGN =
-            BLOCK_ENTITIES.register("cheese_sign",
+    public static final Supplier<BlockEntityType<ModSignBlockEntity>> SIGN =
+            BLOCK_ENTITIES.register("sign",
                     () -> BlockEntityType.Builder.of(
                             ModSignBlockEntity::new,
                             ModBlocks.CHEESE_SIGN.get(),
-                            ModBlocks.CHEESE_WALL_SIGN.get()
+                            ModBlocks.CHEESE_WALL_SIGN.get(),
+                            ModBlocks.PLOMBIR_SIGN.get(),
+                            ModBlocks.PLOMBIR_HANGING_SIGN.get()
                     ).build(null));
 
-    public static final Supplier<BlockEntityType<ModHangingSignBlockEntity>> CHEESE_HANGING_SIGN =
-            BLOCK_ENTITIES.register("cheese_hanging_sign",
+    public static final Supplier<BlockEntityType<ModHangingSignBlockEntity>> HANGING_SIGN =
+            BLOCK_ENTITIES.register("hanging_sign",
                     () -> BlockEntityType.Builder.of(
                             ModHangingSignBlockEntity::new,
                             ModBlocks.CHEESE_HANGING_SIGN.get(),
-                            ModBlocks.CHEESE_WALL_HANGING_SIGN.get()
+                            ModBlocks.CHEESE_WALL_HANGING_SIGN.get(),
+                            ModBlocks.PLOMBIR_SIGN.get(),
+                            ModBlocks.PLOMBIR_HANGING_SIGN.get()
                     ).build(null));
 
     public static void register(IEventBus eventBus) {

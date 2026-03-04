@@ -9,11 +9,11 @@ import org.jetbrains.annotations.NotNull;
 
 public class ModSignBlockEntity extends SignBlockEntity {
     public ModSignBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.CHEESE_SIGN.get(), pos, blockState);
+        super(ModBlockEntities.SIGN.get(), pos, blockState);
     }
 
     @Override
     public @NotNull BlockEntityType<?> getType() {
-        return ModBlockEntities.CHEESE_SIGN.get();
+        return ModBlockEntities.SIGN.get();
     }
 }

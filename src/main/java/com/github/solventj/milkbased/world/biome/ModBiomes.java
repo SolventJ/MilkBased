@@ -10,10 +10,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.neoforged.neoforge.common.world.BiomeSpecialEffectsBuilder;
 
 public class ModBiomes {
     public static final ResourceKey<Biome> CHEESE_BIOME = registerKey("cheese_biome");
+    public static final ResourceKey<Biome> PLOMBIR_BIOME = registerKey("plombir_biome");
     public static final ResourceKey<Biome> GORGONZOLA_BIOME = registerKey("gorgonzola_biome");
 
     public static void bootstrap(BootstrapContext<Biome> context) {
@@ -29,7 +29,19 @@ public class ModBiomes {
                         .build())
                 .generationSettings(new BiomeGenerationSettings.PlainBuilder()
                         .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                                placedFeatures.getOrThrow(ModPlacedFeatures.CHEESEWOOD_TREE_PLACED_KEY))
+                                placedFeatures.getOrThrow(ModPlacedFeatures.CHEESEWOOD_TREE))
+                        .build())
+                .build());
+
+        context.register(PLOMBIR_BIOME, new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(-10.0f)
+                .downfall(0.5f)
+                .specialEffects(milkDimBiomeEffects())
+                .mobSpawnSettings(MobSpawnSettings.EMPTY)
+                .generationSettings(new BiomeGenerationSettings.PlainBuilder()
+                        .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
+                                placedFeatures.getOrThrow(ModPlacedFeatures.PLOMBIR_TREE))
                         .build())
                 .build());
 
@@ -43,7 +55,7 @@ public class ModBiomes {
                         .build())
                 .generationSettings(new BiomeGenerationSettings.PlainBuilder()
                         .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                                placedFeatures.getOrThrow(ModPlacedFeatures.CHEESEWOOD_TREE_PLACED_KEY))
+                                placedFeatures.getOrThrow(ModPlacedFeatures.CHEESEWOOD_TREE))
                         .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION,
                                 placedFeatures.getOrThrow(ModPlacedFeatures.BLUE_MOLD))
                         .build())

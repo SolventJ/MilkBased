@@ -8,5 +8,8 @@ import java.util.Optional;
 
 public class ModTreeGrowers {
     public static final TreeGrower CHEESEWOOD = new TreeGrower(MilkBased.MOD_ID + ":cheesewood",
-            Optional.empty(), Optional.of(ModConfiguredFeatures.CHEESEWOOD_TREE_KEY), Optional.empty());
+            Optional.empty(), Optional.of(ModConfiguredFeatures.CHEESEWOOD_TREE), Optional.empty());
+
+    public static final TreeGrower PLOMBIR = new TreeGrower(MilkBased.MOD_ID + ":plombir",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.PLOMBIR_TREE), Optional.empty());
 }

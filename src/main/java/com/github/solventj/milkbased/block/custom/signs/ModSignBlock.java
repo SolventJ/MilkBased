@@ -1,15 +1,15 @@
-package com.github.solventj.milkbased.block.custom.sign;
+package com.github.solventj.milkbased.block.custom.signs;
 
 import com.github.solventj.milkbased.block_entity.custom.ModSignBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.WallSignBlock;
+import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import org.jetbrains.annotations.NotNull;
 
-public class WallCheeseSignBlock extends WallSignBlock {
-    public WallCheeseSignBlock(WoodType type, Properties properties) {
+public class ModSignBlock extends StandingSignBlock {
+    public ModSignBlock(WoodType type, Properties properties) {
         super(type, properties);
     }
 

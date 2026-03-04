@@ -55,6 +55,31 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.GORGONZOLA.get());
         otherWhenNotSilkTouch(ModBlocks.GORGONZOLA_TURF.get(), ModBlocks.GORGONZOLA.get());
+
+        dropSelf(ModBlocks.PLOMBIR_SNOW.get());
+
+        dropSelf(ModBlocks.PLOMBIR_SAPLING.get());
+        add(ModBlocks.PLOMBIR_LEAVES.get(), leaves -> this.createLeavesDrops(
+                leaves, ModBlocks.PLOMBIR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        dropSelf(ModBlocks.PLOMBIR_LOG.get());
+        dropSelf(ModBlocks.STRIPPED_PLOMBIR_LOG.get());
+        dropSelf(ModBlocks.PLOMBIR_WOOD.get());
+        dropSelf(ModBlocks.STRIPPED_PLOMBIR_WOOD.get());
+
+        dropSelf(ModBlocks.PLOMBIR_PLANKS.get());
+        dropSelf(ModBlocks.PLOMBIR_STAIRS.get());
+        dropSelf(ModBlocks.PLOMBIR_SLAB.get());
+        dropSelf(ModBlocks.PLOMBIR_FENCE.get());
+        dropSelf(ModBlocks.PLOMBIR_FENCE_GATE.get());
+        add(ModBlocks.PLOMBIR_DOOR.get(), this::createDoorTable);
+        dropSelf(ModBlocks.PLOMBIR_TRAPDOOR.get());
+        dropSelf(ModBlocks.PLOMBIR_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.PLOMBIR_BUTTON.get());
+
+        dropOther(ModBlocks.PLOMBIR_SIGN.get(), ModItems.PLOMBIR_SIGN.get());
+        dropOther(ModBlocks.PLOMBIR_WALL_SIGN.get(), ModItems.PLOMBIR_SIGN.get());
+        dropOther(ModBlocks.PLOMBIR_HANGING_SIGN.get(), ModItems.PLOMBIR_HANGING_SIGN.get());
+        dropOther(ModBlocks.PLOMBIR_WALL_HANGING_SIGN.get(), ModItems.PLOMBIR_HANGING_SIGN.get());
     }
 
     private void otherWhenNotSilkTouch(Block self, Block other) {

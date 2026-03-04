@@ -9,4 +9,9 @@ public class ModWoodTypes {
             MilkBased.MOD_ID + ":cheesewood",
             BlockSetType.OAK
     ));
+
+    public static final WoodType PLOMBIR = WoodType.register(new WoodType(
+            MilkBased.MOD_ID + ":plombir",
+            BlockSetType.SPRUCE
+    ));
 }

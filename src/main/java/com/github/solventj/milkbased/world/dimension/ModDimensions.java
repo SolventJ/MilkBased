@@ -38,7 +38,7 @@ public class ModDimensions {
                 new NoiseBasedChunkGenerator(
                         MultiNoiseBiomeSource.createFromList(new Climate.ParameterList<>(List.of(
                                 Pair.of(new Climate.ParameterPoint(
-                                                Climate.Parameter.span(0.0f, 0.5f),
+                                                Climate.Parameter.span(-0.5f, 0.5f),
                                                 Climate.Parameter.span(0.1f, 0.8f),
                                                 Climate.Parameter.span(0.1f, 0.8f),
                                                 Climate.Parameter.span(0.1f, 0.8f),
@@ -49,7 +49,18 @@ public class ModDimensions {
                                         biomes.getOrThrow(ModBiomes.CHEESE_BIOME)
                                 ),
                                 Pair.of(new Climate.ParameterPoint(
-                                                Climate.Parameter.span(0.5f, 1.0f),
+                                                Climate.Parameter.span(-2.0f, -0.5f),
+                                                Climate.Parameter.span(0.1f, 0.8f),
+                                                Climate.Parameter.span(0.1f, 0.8f),
+                                                Climate.Parameter.span(0.1f, 0.8f),
+                                                Climate.Parameter.span(0.1f, 0.8f),
+                                                Climate.Parameter.span(0.1f, 0.8f),
+                                                10L
+                                        ),
+                                        biomes.getOrThrow(ModBiomes.PLOMBIR_BIOME)
+                                ),
+                                Pair.of(new Climate.ParameterPoint(
+                                                Climate.Parameter.span(0.5f, 2.0f),
                                                 Climate.Parameter.span(0.1f, 0.8f),
                                                 Climate.Parameter.span(0.1f, 0.8f),
                                                 Climate.Parameter.span(0.1f, 0.8f),

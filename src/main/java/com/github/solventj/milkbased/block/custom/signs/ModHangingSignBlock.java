@@ -1,15 +1,15 @@
-package com.github.solventj.milkbased.block.custom.sign;
+package com.github.solventj.milkbased.block.custom.signs;
 
 import com.github.solventj.milkbased.block_entity.custom.ModHangingSignBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.WallHangingSignBlock;
+import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import org.jetbrains.annotations.NotNull;
 
-public class WallCheeseHangingSignBlock extends WallHangingSignBlock {
-    public WallCheeseHangingSignBlock(WoodType type, Properties properties) {
+public class ModHangingSignBlock extends CeilingHangingSignBlock {
+    public ModHangingSignBlock(WoodType type, Properties properties) {
         super(type, properties);
     }
 

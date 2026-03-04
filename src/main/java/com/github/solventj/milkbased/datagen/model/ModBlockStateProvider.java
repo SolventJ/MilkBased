@@ -57,6 +57,31 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         simpleBlock(ModBlocks.GORGONZOLA.get());
         grassBlock(ModBlocks.GORGONZOLA_TURF.get(), ModBlocks.GORGONZOLA.get());
+
+        simpleBlock(ModBlocks.PLOMBIR_SNOW.get());
+
+        crossBlock(ModBlocks.PLOMBIR_SAPLING.get());
+        simpleBlock(ModBlocks.PLOMBIR_LEAVES.get());
+        logBlock(ModBlocks.PLOMBIR_LOG.get());
+        logBlock(ModBlocks.STRIPPED_PLOMBIR_LOG.get());
+        woodBlock(ModBlocks.PLOMBIR_WOOD.get(), ModBlocks.PLOMBIR_LOG.get());
+        woodBlock(ModBlocks.STRIPPED_PLOMBIR_WOOD.get(), ModBlocks.STRIPPED_PLOMBIR_LOG.get());
+
+        simpleBlock(ModBlocks.PLOMBIR_PLANKS.get());
+        var plombirPlanks = blockTexture(ModBlocks.PLOMBIR_PLANKS.get());
+
+        stairsBlock(ModBlocks.PLOMBIR_STAIRS.get(), plombirPlanks);
+        slabBlock(ModBlocks.PLOMBIR_SLAB.get(), plombirPlanks, plombirPlanks);
+        fenceBlock(ModBlocks.PLOMBIR_FENCE.get(), plombirPlanks);
+        fenceGateBlock(ModBlocks.PLOMBIR_FENCE_GATE.get(), plombirPlanks);
+        basicDoor(ModBlocks.PLOMBIR_DOOR.get());
+        basicTrapDoor(ModBlocks.PLOMBIR_TRAPDOOR.get());
+        pressurePlateBlock(ModBlocks.PLOMBIR_PRESSURE_PLATE.get(), plombirPlanks);
+        buttonBlock(ModBlocks.PLOMBIR_BUTTON.get(), plombirPlanks);
+
+        signBlock(ModBlocks.PLOMBIR_SIGN.get(), ModBlocks.PLOMBIR_WALL_SIGN.get(), plombirPlanks);
+        hangingSignBlock(ModBlocks.PLOMBIR_HANGING_SIGN.get(), ModBlocks.PLOMBIR_WALL_HANGING_SIGN.get(),
+                blockTexture(ModBlocks.STRIPPED_PLOMBIR_LOG.get()));
     }
 
     public void crossBlock(Block block) {

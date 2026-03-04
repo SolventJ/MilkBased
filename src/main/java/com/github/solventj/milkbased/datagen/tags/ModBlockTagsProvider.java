@@ -27,13 +27,21 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModBlocks.STRIPPED_CHEESEWOOD.get()
         );
 
-        tag(ModBlockTags.CHEESEWOOD_SOIL).add(
+        tag(ModBlockTags.CHEESEWOOD_GROWABLE_ON).add(
                 ModBlocks.CHEESE_BLOCK.get(),
                 ModBlocks.GORGONZOLA.get(),
                 ModBlocks.GORGONZOLA_TURF.get()
         );
 
+        tag(ModBlockTags.PLOMBIR_LOGS).add(
+                ModBlocks.PLOMBIR_LOG.get(),
+                ModBlocks.STRIPPED_PLOMBIR_LOG.get(),
+                ModBlocks.PLOMBIR_WOOD.get(),
+                ModBlocks.STRIPPED_PLOMBIR_WOOD.get()
+        );
+
         tag(BlockTags.LOGS).addTag(ModBlockTags.CHEESEWOOD_LOGS);
+        tag(BlockTags.LOGS).addTag(ModBlockTags.PLOMBIR_LOGS);
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 ModBlocks.MILKSTONE.get(),
@@ -45,9 +53,13 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModBlocks.CHEESE_BLOCK.get(),
                 ModBlocks.CURD_BLOCK.get(),
                 ModBlocks.GORGONZOLA.get(),
-                ModBlocks.GORGONZOLA_TURF.get()
+                ModBlocks.GORGONZOLA_TURF.get(),
+                ModBlocks.PLOMBIR_SNOW.get()
         );
 
-        tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(ModBlocks.CHEESE_BLOCK.get());
+        tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(
+                ModBlocks.CHEESE_BLOCK.get(),
+                ModBlocks.GORGONZOLA_TURF.get()
+        );
     }
 }

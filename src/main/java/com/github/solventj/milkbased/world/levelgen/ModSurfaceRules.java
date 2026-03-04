@@ -27,6 +27,10 @@ public class ModSurfaceRules {
                         makeStateRule(ModBlocks.CHEESE_BLOCK.get())
                 ),
                 SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.PLOMBIR_BIOME),
+                        makeStateRule(ModBlocks.PLOMBIR_SNOW.get())
+                ),
+                SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.GORGONZOLA_BIOME),
                         makeStateRule(ModBlocks.GORGONZOLA_TURF.get())
                 )
@@ -36,6 +40,10 @@ public class ModSurfaceRules {
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.CHEESE_BIOME),
                         makeStateRule(ModBlocks.CURD_BLOCK.get())
+                ),
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(ModBiomes.PLOMBIR_BIOME),
+                        makeStateRule(ModBlocks.PLOMBIR_SNOW.get())
                 ),
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.GORGONZOLA_BIOME),

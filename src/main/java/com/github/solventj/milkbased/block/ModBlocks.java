@@ -2,10 +2,12 @@ package com.github.solventj.milkbased.block;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.custom.*;
-import com.github.solventj.milkbased.block.custom.sign.CheeseHangingSignBlock;
-import com.github.solventj.milkbased.block.custom.sign.CheeseSignBlock;
-import com.github.solventj.milkbased.block.custom.sign.WallCheeseHangingSignBlock;
-import com.github.solventj.milkbased.block.custom.sign.WallCheeseSignBlock;
+import com.github.solventj.milkbased.block.custom.saplings.CheesewoodSaplingBlock;
+import com.github.solventj.milkbased.block.custom.saplings.PlombirSaplingBlock;
+import com.github.solventj.milkbased.block.custom.signs.ModHangingSignBlock;
+import com.github.solventj.milkbased.block.custom.signs.ModSignBlock;
+import com.github.solventj.milkbased.block.custom.signs.ModWallHangingSignBlock;
+import com.github.solventj.milkbased.block.custom.signs.ModWallSignBlock;
 import com.github.solventj.milkbased.fluid.ModFluids;
 import com.github.solventj.milkbased.item.ModItems;
 import com.github.solventj.milkbased.util.ModWoodTypes;
@@ -97,13 +99,13 @@ public class ModBlocks {
                     .strength(2.0F, 6.0F));
 
     public static final DeferredBlock<Block> CHEESEWOOD_SAPLING = registerBlock("cheesewood_sapling",
-            () -> new CheesewoodSapling(ModTreeGrowers.CHEESEWOOD, BlockBehaviour.Properties.of()
+            CheesewoodSaplingBlock::new, BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
                     .noCollission()
                     .randomTicks()
                     .instabreak()
                     .sound(SoundType.GRASS)
-                    .pushReaction(PushReaction.DESTROY)));
+                    .pushReaction(PushReaction.DESTROY));
 
     public static final DeferredBlock<Block> CHEESEWOOD_LEAVES = registerBlock(
             "cheesewood_leaves", LeavesBlock::new, BlockBehaviour.Properties.of()
@@ -121,8 +123,8 @@ public class ModBlocks {
 
     public static final DeferredBlock<RotatedPillarBlock> CHEESEWOOD_LOG = registerBlock(
             "cheesewood_log", RotatedPillarBlock::new, BlockBehaviour.Properties.of()
-                    .mapColor(bs -> bs.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y
-                            ? MapColor.WOOD : MapColor.PODZOL)
+                    .mapColor(bs -> bs.getValue(RotatedPillarBlock.AXIS)
+                            == Direction.Axis.Y ? MapColor.WOOD : MapColor.PODZOL)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2.0f)
                     .sound(SoundType.WOOD)
@@ -193,20 +195,20 @@ public class ModBlocks {
                     .ofFullCopy(Blocks.OAK_BUTTON)));
 
     public static final DeferredBlock<StandingSignBlock> CHEESE_SIGN = BLOCKS.register("cheese_sign",
-            () -> new CheeseSignBlock(ModWoodTypes.CHEESEWOOD, BlockBehaviour.Properties
+            () -> new ModSignBlock(ModWoodTypes.CHEESEWOOD, BlockBehaviour.Properties
                     .ofFullCopy(Blocks.OAK_SIGN)));
 
     public static final DeferredBlock<WallSignBlock> CHEESE_WALL_SIGN = BLOCKS.register("cheese_wall_sign",
-            () -> new WallCheeseSignBlock(ModWoodTypes.CHEESEWOOD, BlockBehaviour.Properties
+            () -> new ModWallSignBlock(ModWoodTypes.CHEESEWOOD, BlockBehaviour.Properties
                     .ofFullCopy(Blocks.OAK_WALL_SIGN)));
 
     public static final DeferredBlock<CeilingHangingSignBlock> CHEESE_HANGING_SIGN =
-            BLOCKS.register("cheese_hanging_sign", () -> new CheeseHangingSignBlock(
+            BLOCKS.register("cheese_hanging_sign", () -> new ModHangingSignBlock(
                     ModWoodTypes.CHEESEWOOD, BlockBehaviour.Properties
                     .ofFullCopy(Blocks.OAK_HANGING_SIGN)));
 
     public static final DeferredBlock<WallHangingSignBlock> CHEESE_WALL_HANGING_SIGN =
-            BLOCKS.register("cheese_wall_hanging_sign", () -> new WallCheeseHangingSignBlock(
+            BLOCKS.register("cheese_wall_hanging_sign", () -> new ModWallHangingSignBlock(
                     ModWoodTypes.CHEESEWOOD, BlockBehaviour.Properties
                     .ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
 
@@ -233,6 +235,127 @@ public class ModBlocks {
                     .instrument(NoteBlockInstrument.COW_BELL)
                     .strength(0.5f)
                     .sound(SoundType.FROGLIGHT));
+
+    public static final DeferredBlock<Block> PLOMBIR_SNOW = registerSimpleBlock(
+            "plombir_snow", BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.SNOW)
+                    .strength(0.4f)
+                    .sound(SoundType.SNOW));
+
+    public static final DeferredBlock<Block> PLOMBIR_SAPLING = registerBlock("plombir_sapling",
+            PlombirSaplingBlock::new, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .pushReaction(PushReaction.DESTROY));
+
+    public static final DeferredBlock<Block> PLOMBIR_LEAVES = registerBlock(
+            "plombir_leaves", LeavesBlock::new, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.SNOW)
+                    .strength(0.2f)
+                    .randomTicks()
+                    .sound(SoundType.GRASS)
+                    .noOcclusion()
+                    .isValidSpawn(Blocks::ocelotOrParrot)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)
+                    .ignitedByLava()
+                    .pushReaction(PushReaction.DESTROY)
+                    .isRedstoneConductor(ModBlocks::never));
+
+    public static final DeferredBlock<RotatedPillarBlock> PLOMBIR_LOG = registerBlock(
+            "plombir_log", RotatedPillarBlock::new, BlockBehaviour.Properties.of()
+                    .mapColor(state -> state.getValue(RotatedPillarBlock.AXIS)
+                            == Direction.Axis.Y ? MapColor.SNOW : MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2.0f)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava());
+
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PLOMBIR_LOG = registerBlock(
+            "stripped_plombir_log", RotatedPillarBlock::new, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.SNOW)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2.0f)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava());
+
+    public static final DeferredBlock<RotatedPillarBlock> PLOMBIR_WOOD = registerBlock(
+            "plombir_wood", RotatedPillarBlock::new, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2.0f)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava());
+
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PLOMBIR_WOOD = registerBlock(
+            "stripped_plombir_wood", RotatedPillarBlock::new, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.SNOW)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2.0f)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava());
+
+    public static final DeferredBlock<Block> PLOMBIR_PLANKS = registerSimpleBlock(
+            "plombir_planks", BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.SNOW)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2.0f, 3.0f)
+                    .sound(SoundType.WOOD)
+                    .ignitedByLava());
+
+    public static final DeferredBlock<StairBlock> PLOMBIR_STAIRS = registerBlock("plombir_stairs",
+            () -> new StairBlock(PLOMBIR_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_STAIRS)));
+
+    public static final DeferredBlock<SlabBlock> PLOMBIR_SLAB = registerBlock("plombir_slab",
+            SlabBlock::new, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_SLAB));
+
+    public static final DeferredBlock<FenceBlock> PLOMBIR_FENCE = registerBlock("plombir_fence",
+            FenceBlock::new, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_FENCE));
+
+    public static final DeferredBlock<FenceGateBlock> PLOMBIR_FENCE_GATE = registerBlock("plombir_fence_gate",
+            () -> new FenceGateBlock(ModWoodTypes.PLOMBIR, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_FENCE_GATE)));
+
+    public static final DeferredBlock<DoorBlock> PLOMBIR_DOOR = registerBlock("plombir_door",
+            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_DOOR)));
+
+    public static final DeferredBlock<TrapDoorBlock> PLOMBIR_TRAPDOOR = registerBlock("plombir_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_TRAPDOOR)));
+
+    public static final DeferredBlock<PressurePlateBlock> PLOMBIR_PRESSURE_PLATE = registerBlock(
+            "plombir_pressure_plate", () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_PRESSURE_PLATE)));
+
+    public static final DeferredBlock<ButtonBlock> PLOMBIR_BUTTON = registerBlock("plombir_button",
+            PlombirButtonBlock::new, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_BUTTON));
+
+    public static final DeferredBlock<StandingSignBlock> PLOMBIR_SIGN = BLOCKS.register("plombir_sign",
+            () -> new ModSignBlock(ModWoodTypes.PLOMBIR, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_SIGN)));
+
+    public static final DeferredBlock<WallSignBlock> PLOMBIR_WALL_SIGN = BLOCKS.register("plombir_wall_sign",
+            () -> new ModWallSignBlock(ModWoodTypes.PLOMBIR, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_WALL_SIGN)));
+
+    public static final DeferredBlock<CeilingHangingSignBlock> PLOMBIR_HANGING_SIGN =
+            BLOCKS.register("plombir_hanging_sign", () -> new ModHangingSignBlock(
+                    ModWoodTypes.PLOMBIR, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_HANGING_SIGN)));
+
+    public static final DeferredBlock<WallHangingSignBlock> PLOMBIR_WALL_HANGING_SIGN =
+            BLOCKS.register("plombir_wall_hanging_sign", () -> new ModWallHangingSignBlock(
+                    ModWoodTypes.PLOMBIR, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+
 
     public static <B extends Block> DeferredBlock<B> registerBlock(String name, Supplier<B> bSupplier) {
         DeferredBlock<B> block = BLOCKS.register(name, bSupplier);

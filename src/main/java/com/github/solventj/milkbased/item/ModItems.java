@@ -23,6 +23,14 @@ public class ModItems {
             () -> new HangingSignItem(ModBlocks.CHEESE_HANGING_SIGN.get(), ModBlocks.CHEESE_WALL_HANGING_SIGN.get(),
                     new Item.Properties().stacksTo(16)));
 
+    public static final DeferredItem<SignItem> PLOMBIR_SIGN = ITEMS.register("plombir_sign",
+            () -> new SignItem(new Item.Properties().stacksTo(16),
+                    ModBlocks.PLOMBIR_SIGN.get(), ModBlocks.PLOMBIR_WALL_SIGN.get()));
+
+    public static final DeferredItem<HangingSignItem> PLOMBIR_HANGING_SIGN = ITEMS.register("plombir_hanging_sign",
+            () -> new HangingSignItem(ModBlocks.PLOMBIR_HANGING_SIGN.get(), ModBlocks.PLOMBIR_WALL_HANGING_SIGN.get(),
+                    new Item.Properties().stacksTo(16)));
+
     public static final DeferredItem<Item> CHECHIL = ITEMS.registerSimpleItem("chechil",
             new Item.Properties().food(Foods.COOKIE));
 
