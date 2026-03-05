@@ -2,6 +2,8 @@ package com.github.solventj.milkbased.item;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
+import com.github.solventj.milkbased.entity.MilkBoat;
+import com.github.solventj.milkbased.entity.ModEntities;
 import com.github.solventj.milkbased.fluid.ModFluids;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
@@ -30,6 +32,9 @@ public class ModItems {
     public static final DeferredItem<HangingSignItem> PLOMBIR_HANGING_SIGN = ITEMS.register("plombir_hanging_sign",
             () -> new HangingSignItem(ModBlocks.PLOMBIR_HANGING_SIGN.get(), ModBlocks.PLOMBIR_WALL_HANGING_SIGN.get(),
                     new Item.Properties().stacksTo(16)));
+
+    public static final DeferredItem<BoatItem> CHEESE_BOAT = ITEMS.register("plombir_boat",
+            () -> new BoatItem(false, ModEntities.CHEESE_BOAT, new Item.Properties()));
 
     public static final DeferredItem<Item> CHECHIL = ITEMS.registerSimpleItem("chechil",
             new Item.Properties().food(Foods.COOKIE));

@@ -2,6 +2,7 @@ package com.github.solventj.milkbased;
 
 import com.github.solventj.milkbased.block.ModBlocks;
 import com.github.solventj.milkbased.block_entity.ModBlockEntities;
+import com.github.solventj.milkbased.entity.ModEntities;
 import com.github.solventj.milkbased.fluid.ModFluidTypes;
 import com.github.solventj.milkbased.fluid.ModFluids;
 import com.github.solventj.milkbased.item.ModCreativeModeTabs;
@@ -39,6 +40,7 @@ public class MilkBased {
         ModCreativeModeTabs.register(eventBus);
 
         ModBlockEntities.register(eventBus);
+        ModEntities.register(eventBus);
 
         ModParticleTypes.register(eventBus);
         ModPoiTypes.register(eventBus);

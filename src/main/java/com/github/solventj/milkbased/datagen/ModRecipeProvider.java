@@ -24,6 +24,11 @@ public class ModRecipeProvider extends RecipeProvider {
         planksFromLog(output, ModBlocks.CHEESE_PLANKS.asItem(), ModItemTags.CHEESEWOOD_LOGS, 4);
         woodFromLogs(output, ModBlocks.CHEESEWOOD, ModBlocks.CHEESEWOOD_LOG);
         woodFromLogs(output, ModBlocks.STRIPPED_CHEESEWOOD, ModBlocks.STRIPPED_CHEESEWOOD_LOG);
+
+        planksFromLog(output, ModBlocks.PLOMBIR_PLANKS.asItem(), ModItemTags.PLOMBIR_LOGS, 4);
+        woodFromLogs(output, ModBlocks.PLOMBIR_WOOD, ModBlocks.PLOMBIR_LOG);
+        woodFromLogs(output, ModBlocks.STRIPPED_PLOMBIR_WOOD, ModBlocks.STRIPPED_PLOMBIR_LOG);
+
         smeltingResultFromBase(output, ModBlocks.MILKSTONE, ModBlocks.COBBLED_MILKSTONE);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MILKSTONE, 3)
@@ -56,6 +61,29 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_planks", has(ModBlocks.CHEESE_PLANKS)).save(output);
         buttonBuilder(ModBlocks.CHEESE_BUTTON, cheesePlanks)
                 .unlockedBy("has_planks", has(ModBlocks.CHEESE_PLANKS)).save(output);
+
+        hangingSign(output, ModItems.PLOMBIR_HANGING_SIGN, ModBlocks.STRIPPED_PLOMBIR_LOG);
+        slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PLOMBIR_SLAB, ModBlocks.PLOMBIR_PLANKS);
+        pressurePlate(output, ModBlocks.PLOMBIR_PRESSURE_PLATE, ModBlocks.PLOMBIR_PLANKS);
+
+        Ingredient plombirPlanks = Ingredient.of(ModBlocks.PLOMBIR_PLANKS);
+        signBuilder(ModItems.PLOMBIR_SIGN, plombirPlanks)
+                .unlockedBy("has_planks", has(ModBlocks.PLOMBIR_PLANKS)).save(output);
+        stairBuilder(ModBlocks.PLOMBIR_STAIRS, plombirPlanks)
+                .unlockedBy("has_planks", has(ModBlocks.PLOMBIR_PLANKS)).save(output);
+        fenceBuilder(ModBlocks.PLOMBIR_FENCE, plombirPlanks)
+                .unlockedBy("has_planks", has(ModBlocks.PLOMBIR_PLANKS)).save(output);
+        fenceGateBuilder(ModBlocks.PLOMBIR_FENCE_GATE, plombirPlanks)
+                .unlockedBy("has_planks", has(ModBlocks.PLOMBIR_PLANKS)).save(output);
+        doorBuilder(ModBlocks.PLOMBIR_DOOR, plombirPlanks)
+                .unlockedBy("has_planks", has(ModBlocks.PLOMBIR_PLANKS)).save(output);
+        trapdoorBuilder(ModBlocks.PLOMBIR_TRAPDOOR, plombirPlanks)
+                .unlockedBy("has_planks", has(ModBlocks.PLOMBIR_PLANKS)).save(output);
+        buttonBuilder(ModBlocks.PLOMBIR_BUTTON, plombirPlanks)
+                .unlockedBy("has_planks", has(ModBlocks.PLOMBIR_PLANKS)).save(output);
+
+        twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.PLOMBIR_SNOW_BLOCK, ModItems.SCOOP_OF_PLOMBIR);
     }
 
     protected static void smeltingResultFromBase(@NotNull RecipeOutput recipeOutput, ItemLike result,

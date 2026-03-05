@@ -1,6 +1,7 @@
 package com.github.solventj.milkbased;
 
 import com.github.solventj.milkbased.block.ModBlocks;
+import com.github.solventj.milkbased.entity.MilkBoat;
 import com.github.solventj.milkbased.util.ModFluidInteractions;
 import com.github.solventj.milkbased.world.dimension.portal.ModPortalShape;
 import com.github.solventj.milkbased.item.ModItems;
@@ -89,13 +90,14 @@ public class ModEvents {
         if (!event.getItemAbility().name().equals("axe_strip")) return;
         BlockState state = event.getState();
 
-        BlockState stripResult = strip(state,
-                ModBlocks.CHEESEWOOD.get(),
-                ModBlocks.CHEESEWOOD_LOG.get());
+        boolean isWood = state.is(ModBlocks.CHEESEWOOD);
+        if (!isWood && !state.is(ModBlocks.CHEESEWOOD_LOG)) return;
 
-        if (stripResult == null) return;
+        Block newBlock = isWood
+                ? ModBlocks.STRIPPED_CHEESEWOOD.get()
+                : ModBlocks.STRIPPED_CHEESEWOOD_LOG.get();
 
-        event.setFinalState(stripResult.setValue(
+        event.setFinalState(newBlock.defaultBlockState().setValue(
                 RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)));
 
         LevelAccessor levelAccessor = event.getLevel();
@@ -120,21 +122,14 @@ public class ModEvents {
         if (!event.getItemAbility().name().equals("axe_strip")) return;
         BlockState state = event.getState();
 
-        BlockState stripResult = strip(state,
-                ModBlocks.PLOMBIR_WOOD.get(),
-                ModBlocks.PLOMBIR_LOG.get());
+        boolean isWood = state.is(ModBlocks.PLOMBIR_WOOD);
+        if (!isWood && !state.is(ModBlocks.PLOMBIR_LOG)) return;
 
-        if (stripResult == null) return;
+        Block newBlock = isWood
+                ? ModBlocks.STRIPPED_PLOMBIR_WOOD.get()
+                : ModBlocks.STRIPPED_PLOMBIR_LOG.get();
 
-        event.setFinalState(stripResult.setValue(
+        event.setFinalState(newBlock.defaultBlockState().setValue(
                 RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)));
-    }
-
-    private static BlockState strip(BlockState inState, RotatedPillarBlock wood, RotatedPillarBlock log) {
-        boolean isWood = inState.is(wood);
-        if (!isWood && !inState.is(log)) return null;
-
-        Block newBlock = isWood ? wood : log;
-        return newBlock.defaultBlockState();
     }
 }

@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "milkbased.refmap.json",
   "mixins": [
+    "BoatMixin",
     "IEntityExtensionMixin",
     "LavaFluidMixin",
     "ServerLevelMixin"

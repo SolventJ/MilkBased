@@ -1,6 +1,7 @@
 package com.github.solventj.milkbased;
 
 import com.github.solventj.milkbased.block_entity.ModBlockEntities;
+import com.github.solventj.milkbased.entity.ModEntities;
 import com.github.solventj.milkbased.fluid.ModFluidTypes;
 import com.github.solventj.milkbased.fluid.ModFluids;
 import com.github.solventj.milkbased.particle.MilkPortalParticle;
@@ -18,6 +19,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -45,6 +47,8 @@ public class ModClientEvents {
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.SIGN.get(), SignRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
+        event.registerEntityRenderer(ModEntities.CHEESE_BOAT.get(),
+                ctx -> new BoatRenderer(ctx, false));
     }
 
     @SubscribeEvent
