@@ -16,6 +16,6 @@ public class PlombirSaplingBlock extends SaplingBlock {
     @Override
     protected boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
         BlockState belowBlockState = level.getBlockState(pos.below());
-        return belowBlockState.is(ModBlocks.PLOMBIR_SNOW);
+        return belowBlockState.is(ModBlocks.PLOMBIR_SNOW_BLOCK);
     }
 }

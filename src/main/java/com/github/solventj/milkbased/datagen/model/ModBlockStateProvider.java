@@ -3,12 +3,16 @@ package com.github.solventj.milkbased.datagen.model;
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.util.Objects;
 
 public class ModBlockStateProvider extends BlockStateProvider {
 
@@ -58,7 +62,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.GORGONZOLA.get());
         grassBlock(ModBlocks.GORGONZOLA_TURF.get(), ModBlocks.GORGONZOLA.get());
 
-        simpleBlock(ModBlocks.PLOMBIR_SNOW.get());
+        simpleWithOtherTexture(ModBlocks.PLOMBIR_SNOW_BLOCK.get(), ModBlocks.PLOMBIR_SNOW.get());
+        createSnowBlocks(ModBlocks.PLOMBIR_SNOW.get(), ModBlocks.PLOMBIR_SNOW_BLOCK.get());
 
         crossBlock(ModBlocks.PLOMBIR_SAPLING.get());
         simpleBlock(ModBlocks.PLOMBIR_LEAVES.get());
@@ -92,8 +97,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void simpleTranslucentBlock(Block block) {
         this.simpleBlock(block, models()
-                .cubeAll(blockTexture(block).getPath(), this.blockTexture(block))
+                .cubeAll(blockTexture(block).getPath(), blockTexture(block))
                 .renderType("translucent"));
+    }
+
+    private void simpleWithOtherTexture(Block block, Block other) {
+        simpleBlock(block, models().cubeAll(
+                blockTexture(block).getPath(),
+                blockTexture(other)
+        ));
     }
 
     private void grassBlock(Block block, Block bottomBlock) {
@@ -132,6 +144,32 @@ public class ModBlockStateProvider extends BlockStateProvider {
         trapdoorBlockWithRenderType(block, texture, true, "cutout");
     }
 
+    private void createSnowBlocks(Block block, Block full) {
+        var builder = getVariantBuilder(block);
+
+        for (int i = 1; i <= 8; i++) {
+            ModelFile model;
+
+            if (i == 8) {
+                model = models().getExistingFile(blockTexture(full));
+            } else {
+                String suffix = "_height" + i * 2;
+
+                ResourceLocation texture = blockTexture(block);
+                String modelLocation = texture.getPath() + suffix;
+                ResourceLocation parent = mcLoc("block/snow").withSuffix(suffix);
+
+                model = models()
+                        .withExistingParent(modelLocation, parent)
+                        .texture("particle", texture)
+                        .texture("texture", texture);
+            }
+
+            builder.partialState().with(BlockStateProperties.LAYERS, i)
+                    .modelForState().modelFile(model).addModel();
+        }
+    }
+
     private void netherPortalBlock(Block block) {
         ResourceLocation portalLoc = blockTexture(block);
         ModelFile portalModel_ns = models()
@@ -141,10 +179,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .withExistingParent(portalLoc.getPath() + "_ew", mcLoc("block/nether_portal_ew"))
                 .texture("particle", portalLoc).texture("portal", portalLoc).renderType("translucent");
 
-        var portalVariantBuilder = getVariantBuilder(block);
-        portalVariantBuilder.partialState().with(NetherPortalBlock.AXIS, Direction.Axis.X)
+        var builder = getVariantBuilder(block);
+        builder.partialState().with(NetherPortalBlock.AXIS, Direction.Axis.X)
                 .modelForState().modelFile(portalModel_ns).addModel();
-        portalVariantBuilder.partialState().with(NetherPortalBlock.AXIS, Direction.Axis.Z)
+        builder.partialState().with(NetherPortalBlock.AXIS, Direction.Axis.Z)
                 .modelForState().modelFile(portalModel_ew).addModel();
     }
 

@@ -43,6 +43,30 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.LOGS).addTag(ModBlockTags.CHEESEWOOD_LOGS);
         tag(BlockTags.LOGS).addTag(ModBlockTags.PLOMBIR_LOGS);
 
+        tag(ModBlockTags.PLOMBIR_FURNITURE).add(
+                ModBlocks.PLOMBIR_PLANKS.get(),
+                ModBlocks.PLOMBIR_STAIRS.get(),
+                ModBlocks.PLOMBIR_SLAB.get(),
+                ModBlocks.PLOMBIR_FENCE.get(),
+                ModBlocks.PLOMBIR_FENCE_GATE.get(),
+                ModBlocks.PLOMBIR_DOOR.get(),
+                ModBlocks.PLOMBIR_TRAPDOOR.get(),
+                ModBlocks.PLOMBIR_PRESSURE_PLATE.get(),
+                ModBlocks.PLOMBIR_BUTTON.get()
+        );
+
+        tag(BlockTags.MINEABLE_WITH_AXE).add(
+                ModBlocks.CHEESE_PLANKS.get(),
+                ModBlocks.CHEESE_STAIRS.get(),
+                ModBlocks.CHEESE_SLAB.get(),
+                ModBlocks.CHEESE_FENCE.get(),
+                ModBlocks.CHEESE_FENCE_GATE.get(),
+                ModBlocks.CHEESE_DOOR.get(),
+                ModBlocks.CHEESE_TRAPDOOR.get(),
+                ModBlocks.CHEESE_PRESSURE_PLATE.get(),
+                ModBlocks.CHEESE_BUTTON.get()
+        ).addTag(ModBlockTags.PLOMBIR_FURNITURE);
+
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 ModBlocks.MILKSTONE.get(),
                 ModBlocks.COBBLED_MILKSTONE.get(),
@@ -54,8 +78,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModBlocks.CURD_BLOCK.get(),
                 ModBlocks.GORGONZOLA.get(),
                 ModBlocks.GORGONZOLA_TURF.get(),
+                ModBlocks.PLOMBIR_SNOW_BLOCK.get(),
                 ModBlocks.PLOMBIR_SNOW.get()
-        );
+        ).addTag(ModBlockTags.PLOMBIR_FURNITURE);
 
         tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(
                 ModBlocks.CHEESE_BLOCK.get(),

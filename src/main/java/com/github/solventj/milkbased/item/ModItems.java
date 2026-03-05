@@ -34,6 +34,9 @@ public class ModItems {
     public static final DeferredItem<Item> CHECHIL = ITEMS.registerSimpleItem("chechil",
             new Item.Properties().food(Foods.COOKIE));
 
+    public static final DeferredItem<Item> SCOOP_OF_PLOMBIR = ITEMS.registerSimpleItem("scoop_of_plombir",
+            new Item.Properties().food(Foods.COD));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

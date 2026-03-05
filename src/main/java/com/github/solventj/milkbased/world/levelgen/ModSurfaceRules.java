@@ -28,7 +28,7 @@ public class ModSurfaceRules {
                 ),
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.PLOMBIR_BIOME),
-                        makeStateRule(ModBlocks.PLOMBIR_SNOW.get())
+                        makeStateRule(ModBlocks.PLOMBIR_SNOW_BLOCK.get())
                 ),
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.GORGONZOLA_BIOME),
@@ -43,7 +43,7 @@ public class ModSurfaceRules {
                 ),
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.PLOMBIR_BIOME),
-                        makeStateRule(ModBlocks.PLOMBIR_SNOW.get())
+                        makeStateRule(ModBlocks.PLOMBIR_SNOW_BLOCK.get())
                 ),
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.GORGONZOLA_BIOME),

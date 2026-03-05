@@ -22,7 +22,7 @@ public class ModBlockEntities {
                             ModBlocks.CHEESE_SIGN.get(),
                             ModBlocks.CHEESE_WALL_SIGN.get(),
                             ModBlocks.PLOMBIR_SIGN.get(),
-                            ModBlocks.PLOMBIR_HANGING_SIGN.get()
+                            ModBlocks.PLOMBIR_WALL_SIGN.get()
                     ).build(null));
 
     public static final Supplier<BlockEntityType<ModHangingSignBlockEntity>> HANGING_SIGN =
@@ -31,8 +31,8 @@ public class ModBlockEntities {
                             ModHangingSignBlockEntity::new,
                             ModBlocks.CHEESE_HANGING_SIGN.get(),
                             ModBlocks.CHEESE_WALL_HANGING_SIGN.get(),
-                            ModBlocks.PLOMBIR_SIGN.get(),
-                            ModBlocks.PLOMBIR_HANGING_SIGN.get()
+                            ModBlocks.PLOMBIR_HANGING_SIGN.get(),
+                            ModBlocks.PLOMBIR_WALL_HANGING_SIGN.get()
                     ).build(null));
 
     public static void register(IEventBus eventBus) {

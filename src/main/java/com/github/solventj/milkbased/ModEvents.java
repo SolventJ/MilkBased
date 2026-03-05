@@ -1,7 +1,6 @@
 package com.github.solventj.milkbased;
 
 import com.github.solventj.milkbased.block.ModBlocks;
-import com.github.solventj.milkbased.fluid.ModFluidTypes;
 import com.github.solventj.milkbased.util.ModFluidInteractions;
 import com.github.solventj.milkbased.world.dimension.portal.ModPortalShape;
 import com.github.solventj.milkbased.item.ModItems;
@@ -23,13 +22,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
-import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
-import net.neoforged.neoforge.fluids.FluidType;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.Optional;
 
@@ -91,19 +85,17 @@ public class ModEvents {
     }
 
     @SubscribeEvent
-    private static void onToolModification(BlockEvent.BlockToolModificationEvent event) {
+    private static void cheesewoodStrip(BlockEvent.BlockToolModificationEvent event) {
         if (!event.getItemAbility().name().equals("axe_strip")) return;
         BlockState state = event.getState();
 
-        boolean isCheesewood = state.is(ModBlocks.CHEESEWOOD);
-        boolean isCheesewoodLog = state.is(ModBlocks.CHEESEWOOD_LOG);
-        if (!isCheesewood && !isCheesewoodLog) return;
+        BlockState stripResult = strip(state,
+                ModBlocks.CHEESEWOOD.get(),
+                ModBlocks.CHEESEWOOD_LOG.get());
 
-        Block newBlock = isCheesewood
-                ? ModBlocks.STRIPPED_CHEESEWOOD.get()
-                : ModBlocks.STRIPPED_CHEESEWOOD_LOG.get();
+        if (stripResult == null) return;
 
-        event.setFinalState(newBlock.defaultBlockState().setValue(
+        event.setFinalState(stripResult.setValue(
                 RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)));
 
         LevelAccessor levelAccessor = event.getLevel();
@@ -121,5 +113,28 @@ public class ModEvents {
                 drop);
 
         levelAccessor.addFreshEntity(itemEntity);
+    }
+
+    @SubscribeEvent
+    private static void plombirStrip(BlockEvent.BlockToolModificationEvent event) {
+        if (!event.getItemAbility().name().equals("axe_strip")) return;
+        BlockState state = event.getState();
+
+        BlockState stripResult = strip(state,
+                ModBlocks.PLOMBIR_WOOD.get(),
+                ModBlocks.PLOMBIR_LOG.get());
+
+        if (stripResult == null) return;
+
+        event.setFinalState(stripResult.setValue(
+                RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)));
+    }
+
+    private static BlockState strip(BlockState inState, RotatedPillarBlock wood, RotatedPillarBlock log) {
+        boolean isWood = inState.is(wood);
+        if (!isWood && !inState.is(log)) return null;
+
+        Block newBlock = isWood ? wood : log;
+        return newBlock.defaultBlockState();
     }
 }

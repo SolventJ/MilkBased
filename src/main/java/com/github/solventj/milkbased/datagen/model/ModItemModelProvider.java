@@ -29,6 +29,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PLOMBIR_SIGN.get());
         basicItem(ModItems.PLOMBIR_HANGING_SIGN.get());
         basicItem(ModItems.CHECHIL.get());
+        basicItem(ModItems.SCOOP_OF_PLOMBIR.get());
 
         simpleBlockItem(ModBlocks.CURD_BLOCK.get());
         simpleBlockItem(ModBlocks.MILKSTONE.get());
@@ -59,7 +60,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItem(ModBlocks.GORGONZOLA.get());
         simpleBlockItem(ModBlocks.GORGONZOLA_TURF.get());
 
-        simpleBlockItem(ModBlocks.PLOMBIR_SNOW.get());
+        simpleBlockItem(ModBlocks.PLOMBIR_SNOW_BLOCK.get());
+        withExistingParent(blockKey(ModBlocks.PLOMBIR_SNOW.get()).getPath(), modLoc("block/plombir_snow_height2"));
 
         flatBlockItem(ModBlocks.PLOMBIR_SAPLING.get());
         simpleBlockItem(ModBlocks.PLOMBIR_LEAVES.get());

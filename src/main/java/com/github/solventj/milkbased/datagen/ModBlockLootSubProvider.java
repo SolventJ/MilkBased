@@ -2,11 +2,23 @@ package com.github.solventj.milkbased.datagen;
 
 import com.github.solventj.milkbased.block.ModBlocks;
 import com.github.solventj.milkbased.item.ModItems;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SnowLayerBlock;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -26,6 +38,7 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.WHEY_BLOCK.get());
 
         dropOther(ModBlocks.MILK_CAULDRON.get(), Blocks.CAULDRON);
+        createStemDrops(ModBlocks.MILK_PORTAL.get(), Items.MILK_BUCKET); ///ABSHDIBASDBJLS
 
         dropSelf(ModBlocks.BLUE_MOLD.get());
         dropSelf(ModBlocks.MOLDY_COBBLED_MILKSTONE.get());
@@ -56,7 +69,49 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.GORGONZOLA.get());
         otherWhenNotSilkTouch(ModBlocks.GORGONZOLA_TURF.get(), ModBlocks.GORGONZOLA.get());
 
+        add(ModBlocks.PLOMBIR_SNOW_BLOCK.get(), block ->
+                createSingleItemTableWithSilkTouch(block, ModItems.SCOOP_OF_PLOMBIR, ConstantValue.exactly(4.0F)));
         dropSelf(ModBlocks.PLOMBIR_SNOW.get());
+
+//        this.add( For Snow
+//                Blocks.SNOW,
+//                p_344229_ -> LootTable.lootTable()
+//                        .withPool(
+//                                LootPool.lootPool()
+//                                        .when(LootItemEntityPropertyCondition.entityPresent(LootContext.EntityTarget.THIS))
+//                                        .add(
+//                                                AlternativesEntry.alternatives(
+//                                                        AlternativesEntry.alternatives(
+//                                                                        SnowLayerBlock.LAYERS.getPossibleValues(),
+//                                                                        p_252097_ -> LootItem.lootTableItem(Items.SNOWBALL)
+//                                                                                .when(
+//                                                                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_344229_)
+//                                                                                                .setProperties(
+//                                                                                                        StatePropertiesPredicate.Builder.properties()
+//                                                                                                                .hasProperty(SnowLayerBlock.LAYERS, p_252097_.intValue())
+//                                                                                                )
+//                                                                                )
+//                                                                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly((float)p_252097_.intValue())))
+//                                                                )
+//                                                                .when(this.doesNotHaveSilkTouch()),
+//                                                        AlternativesEntry.alternatives(
+//                                                                SnowLayerBlock.LAYERS.getPossibleValues(),
+//                                                                p_251216_ -> p_251216_ == 8
+//                                                                        ? LootItem.lootTableItem(Blocks.SNOW_BLOCK)
+//                                                                        : LootItem.lootTableItem(Blocks.SNOW)
+//                                                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly((float)p_251216_.intValue())))
+//                                                                        .when(
+//                                                                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_344229_)
+//                                                                                        .setProperties(
+//                                                                                                StatePropertiesPredicate.Builder.properties()
+//                                                                                                        .hasProperty(SnowLayerBlock.LAYERS, p_251216_.intValue())
+//                                                                                        )
+//                                                                        )
+//                                                        )
+//                                                )
+//                                        )
+//                        )
+//        );
 
         dropSelf(ModBlocks.PLOMBIR_SAPLING.get());
         add(ModBlocks.PLOMBIR_LEAVES.get(), leaves -> this.createLeavesDrops(

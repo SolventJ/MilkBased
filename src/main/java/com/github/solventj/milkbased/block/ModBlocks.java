@@ -11,7 +11,6 @@ import com.github.solventj.milkbased.block.custom.signs.ModWallSignBlock;
 import com.github.solventj.milkbased.fluid.ModFluids;
 import com.github.solventj.milkbased.item.ModItems;
 import com.github.solventj.milkbased.util.ModWoodTypes;
-import com.github.solventj.milkbased.block.grower.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -236,11 +235,24 @@ public class ModBlocks {
                     .strength(0.5f)
                     .sound(SoundType.FROGLIGHT));
 
-    public static final DeferredBlock<Block> PLOMBIR_SNOW = registerSimpleBlock(
-            "plombir_snow", BlockBehaviour.Properties.of()
+    public static final DeferredBlock<Block> PLOMBIR_SNOW_BLOCK = registerSimpleBlock(
+            "plombir_snow_block", BlockBehaviour.Properties.of()
                     .mapColor(MapColor.SNOW)
-                    .strength(0.4f)
+                    .requiresCorrectToolForDrops()
+                    .strength(0.2f)
                     .sound(SoundType.SNOW));
+
+    public static final DeferredBlock<Block> PLOMBIR_SNOW = registerBlock(
+            "plombir_snow", () -> new SnowLayerBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.SNOW)
+                    .replaceable()
+                    .randomTicks()
+                    .strength(0.1F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.SNOW)
+                    .isViewBlocking((state, getter, pos)
+                            -> state.getValue(SnowLayerBlock.LAYERS) >= 8)
+                    .pushReaction(PushReaction.DESTROY)));
 
     public static final DeferredBlock<Block> PLOMBIR_SAPLING = registerBlock("plombir_sapling",
             PlombirSaplingBlock::new, BlockBehaviour.Properties.of()
@@ -261,7 +273,6 @@ public class ModBlocks {
                     .isValidSpawn(Blocks::ocelotOrParrot)
                     .isSuffocating(ModBlocks::never)
                     .isViewBlocking(ModBlocks::never)
-                    .ignitedByLava()
                     .pushReaction(PushReaction.DESTROY)
                     .isRedstoneConductor(ModBlocks::never));
 
@@ -271,40 +282,35 @@ public class ModBlocks {
                             == Direction.Axis.Y ? MapColor.SNOW : MapColor.WOOD)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2.0f)
-                    .sound(SoundType.WOOD)
-                    .ignitedByLava());
+                    .sound(SoundType.WOOD));
 
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PLOMBIR_LOG = registerBlock(
             "stripped_plombir_log", RotatedPillarBlock::new, BlockBehaviour.Properties.of()
                     .mapColor(MapColor.SNOW)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2.0f)
-                    .sound(SoundType.WOOD)
-                    .ignitedByLava());
+                    .sound(SoundType.WOOD));
 
     public static final DeferredBlock<RotatedPillarBlock> PLOMBIR_WOOD = registerBlock(
             "plombir_wood", RotatedPillarBlock::new, BlockBehaviour.Properties.of()
                     .mapColor(MapColor.WOOD)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2.0f)
-                    .sound(SoundType.WOOD)
-                    .ignitedByLava());
+                    .sound(SoundType.WOOD));
 
     public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PLOMBIR_WOOD = registerBlock(
             "stripped_plombir_wood", RotatedPillarBlock::new, BlockBehaviour.Properties.of()
                     .mapColor(MapColor.SNOW)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2.0f)
-                    .sound(SoundType.WOOD)
-                    .ignitedByLava());
+                    .sound(SoundType.WOOD));
 
     public static final DeferredBlock<Block> PLOMBIR_PLANKS = registerSimpleBlock(
             "plombir_planks", BlockBehaviour.Properties.of()
                     .mapColor(MapColor.SNOW)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2.0f, 3.0f)
-                    .sound(SoundType.WOOD)
-                    .ignitedByLava());
+                    .sound(SoundType.WOOD));
 
     public static final DeferredBlock<StairBlock> PLOMBIR_STAIRS = registerBlock("plombir_stairs",
             () -> new StairBlock(PLOMBIR_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties

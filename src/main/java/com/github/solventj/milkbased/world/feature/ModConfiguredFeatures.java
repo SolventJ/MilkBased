@@ -44,7 +44,7 @@ public class ModConfiguredFeatures {
                 BlockStateProvider.simple(ModBlocks.PLOMBIR_LEAVES.get()),
                 new SpruceFoliagePlacer(UniformInt.of(2, 3), UniformInt.of(0, 2), UniformInt.of(1, 2)),
                 new TwoLayersFeatureSize(2, 0, 2))
-                .dirt(BlockStateProvider.simple(ModBlocks.PLOMBIR_SNOW.get())).build());
+                .dirt(BlockStateProvider.simple(ModBlocks.PLOMBIR_SNOW_BLOCK.get())).build());
 
         register(context, BLUE_MOLD, Feature.MULTIFACE_GROWTH, new MultifaceGrowthConfiguration(
                 (MultifaceBlock)ModBlocks.BLUE_MOLD.get(), 20, true, true,
