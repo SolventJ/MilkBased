@@ -47,7 +47,7 @@ public class LevelRendererMixin {
         Level level = Minecraft.getInstance().level;
 
         if (level != null && level.dimension() == ModDimensions.MILK_LEVEL_KEY) {
-            return ModParticleTypes.MILK_RAIN.get();
+            return ModParticleTypes.MILK_SPLASH.get();
         }
 
         return ParticleTypes.RAIN;

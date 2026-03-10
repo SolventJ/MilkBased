@@ -16,7 +16,7 @@ public class ModParticleProvider extends ParticleDescriptionProvider {
 
     @Override
     protected void addDescriptions() {
-        spriteSet(ModParticleTypes.MILK_RAIN.get(), modList("milk_splash", 4));
+        spriteSet(ModParticleTypes.MILK_SPLASH.get(), modList("milk_splash", 4));
         spriteSet(ModParticleTypes.MILK_PORTAL.get(), mcList("generic", 8));
     }
 

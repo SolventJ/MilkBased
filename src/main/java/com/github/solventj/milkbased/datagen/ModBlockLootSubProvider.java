@@ -38,7 +38,6 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.WHEY_BLOCK.get());
 
         dropOther(ModBlocks.MILK_CAULDRON.get(), Blocks.CAULDRON);
-        createStemDrops(ModBlocks.MILK_PORTAL.get(), Items.MILK_BUCKET); ///ABSHDIBASDBJLS
 
         dropSelf(ModBlocks.BLUE_MOLD.get());
         dropSelf(ModBlocks.MOLDY_COBBLED_MILKSTONE.get());
@@ -91,9 +90,8 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
                                         : LootItem.lootTableItem(ModBlocks.PLOMBIR_SNOW)
                                         .apply(SetItemCountFunction.setCount(ConstantValue.exactly(integer)))
                                         .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                .setProperties(
-                                                        StatePropertiesPredicate.Builder.properties()
-                                                                .hasProperty(SnowLayerBlock.LAYERS, integer)
+                                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                        .hasProperty(SnowLayerBlock.LAYERS, integer)
                                                 )
                                         )
                         )

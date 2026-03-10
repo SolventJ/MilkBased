@@ -4,20 +4,16 @@ import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.world.biome.ModBiomes;
 import com.github.solventj.milkbased.world.levelgen.ModNoiseGeneratorSettings;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
-import net.minecraft.world.level.biome.FixedBiomeSource;
 import net.minecraft.world.level.biome.MultiNoiseBiomeSource;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
-import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
 import java.util.List;
 
@@ -27,6 +23,21 @@ public class ModDimensions {
 
     public static final ResourceKey<Level> MILK_LEVEL_KEY =
             registerKey(Registries.DIMENSION, "milk_dimension");
+
+    private static final Climate.Parameter TEMPERATURE_FULL = Climate.Parameter.span(-1.0f, 1.0f);
+    private static final Climate.Parameter TEMPERATURE_PLOMBIR = Climate.Parameter.span(-1.0f, -0.325f);
+    private static final Climate.Parameter TEMPERATURE_RIVER = Climate.Parameter.span(-0.325f, 1.0f);
+    private static final Climate.Parameter TEMPERATURE_CHEESE = Climate.Parameter.span(-0.325f, 0.325f);
+    private static final Climate.Parameter TEMPERATURE_GORGONZOLA = Climate.Parameter.span(0.325f, 1.0f);
+    private static final Climate.Parameter HUMIDITY_FULL = Climate.Parameter.span(-1.0f, 1.0f);
+    private static final Climate.Parameter CONTINENTALNESS_OCEAN = Climate.Parameter.span(-1.0f, -0.19f);
+    private static final Climate.Parameter CONTINENTALNESS_CONTINENT = Climate.Parameter.span(-0.19f, 1.0f);
+    private static final Climate.Parameter EROSION_FULL = Climate.Parameter.span(-1.0f, 1.0f);
+    private static final Climate.Parameter DEPTH_FULL = Climate.Parameter.span(-1.0f, 1.0f);
+    private static final Climate.Parameter WEIRDNESS_FULL = Climate.Parameter.span(-1.0f, 1.0f);
+    private static final Climate.Parameter WEIRDNESS_LAND_NEGATIVE = Climate.Parameter.span(-1.0f, -0.05f);
+    private static final Climate.Parameter WEIRDNESS_RIVER = Climate.Parameter.span(-0.05f, 0.05f);
+    private static final Climate.Parameter WEIRDNESS_LAND_POSITIVE = Climate.Parameter.span(0.05f, 1.0f);
 
     public static void bootstrap(BootstrapContext<LevelStem> context) {
         var dimensionTypes = context.lookup(Registries.DIMENSION_TYPE);
@@ -38,35 +49,101 @@ public class ModDimensions {
                 new NoiseBasedChunkGenerator(
                         MultiNoiseBiomeSource.createFromList(new Climate.ParameterList<>(List.of(
                                 Pair.of(new Climate.ParameterPoint(
-                                                Climate.Parameter.span(-0.5f, 0.5f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                10L
+                                                TEMPERATURE_FULL,
+                                                HUMIDITY_FULL,
+                                                CONTINENTALNESS_OCEAN,
+                                                EROSION_FULL,
+                                                DEPTH_FULL,
+                                                WEIRDNESS_FULL,
+                                                0L
                                         ),
-                                        biomes.getOrThrow(ModBiomes.CHEESE_BIOME)
+                                        biomes.getOrThrow(ModBiomes.MILK_OCEAN)
                                 ),
                                 Pair.of(new Climate.ParameterPoint(
-                                                Climate.Parameter.span(-2.0f, -0.5f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                10L
+                                                TEMPERATURE_PLOMBIR,
+                                                HUMIDITY_FULL,
+                                                CONTINENTALNESS_CONTINENT,
+                                                EROSION_FULL,
+                                                DEPTH_FULL,
+                                                WEIRDNESS_LAND_NEGATIVE,
+                                                0L
                                         ),
                                         biomes.getOrThrow(ModBiomes.PLOMBIR_BIOME)
                                 ),
                                 Pair.of(new Climate.ParameterPoint(
-                                                Climate.Parameter.span(0.5f, 2.0f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                Climate.Parameter.span(0.1f, 0.8f),
-                                                10L
+                                                TEMPERATURE_CHEESE,
+                                                HUMIDITY_FULL,
+                                                CONTINENTALNESS_CONTINENT,
+                                                EROSION_FULL,
+                                                DEPTH_FULL,
+                                                WEIRDNESS_LAND_NEGATIVE,
+                                                0L
+                                        ),
+                                        biomes.getOrThrow(ModBiomes.CHEESE_BIOME)
+                                ),
+                                Pair.of(new Climate.ParameterPoint(
+                                                TEMPERATURE_GORGONZOLA,
+                                                HUMIDITY_FULL,
+                                                CONTINENTALNESS_CONTINENT,
+                                                EROSION_FULL,
+                                                DEPTH_FULL,
+                                                WEIRDNESS_LAND_NEGATIVE,
+                                                0L
+                                        ),
+                                        biomes.getOrThrow(ModBiomes.GORGONZOLA_BIOME)
+                                ),
+                                Pair.of(new Climate.ParameterPoint(
+                                                TEMPERATURE_PLOMBIR,
+                                                HUMIDITY_FULL,
+                                                CONTINENTALNESS_CONTINENT,
+                                                EROSION_FULL,
+                                                DEPTH_FULL,
+                                                WEIRDNESS_RIVER,
+                                                0L
+                                        ),
+                                        biomes.getOrThrow(ModBiomes.FROZEN_MILK_RIVER)
+                                ),
+                                Pair.of(new Climate.ParameterPoint(
+                                                TEMPERATURE_RIVER,
+                                                HUMIDITY_FULL,
+                                                CONTINENTALNESS_CONTINENT,
+                                                EROSION_FULL,
+                                                DEPTH_FULL,
+                                                WEIRDNESS_RIVER,
+                                                0L
+                                        ),
+                                        biomes.getOrThrow(ModBiomes.MILK_RIVER)
+                                ),
+                                Pair.of(new Climate.ParameterPoint(
+                                                TEMPERATURE_PLOMBIR,
+                                                HUMIDITY_FULL,
+                                                CONTINENTALNESS_CONTINENT,
+                                                EROSION_FULL,
+                                                DEPTH_FULL,
+                                                WEIRDNESS_LAND_POSITIVE,
+                                                0L
+                                        ),
+                                        biomes.getOrThrow(ModBiomes.PLOMBIR_BIOME)
+                                ),
+                                Pair.of(new Climate.ParameterPoint(
+                                                TEMPERATURE_CHEESE,
+                                                HUMIDITY_FULL,
+                                                CONTINENTALNESS_CONTINENT,
+                                                EROSION_FULL,
+                                                DEPTH_FULL,
+                                                WEIRDNESS_LAND_POSITIVE,
+                                                0L
+                                        ),
+                                        biomes.getOrThrow(ModBiomes.CHEESE_BIOME)
+                                ),
+                                Pair.of(new Climate.ParameterPoint(
+                                                TEMPERATURE_GORGONZOLA,
+                                                HUMIDITY_FULL,
+                                                CONTINENTALNESS_CONTINENT,
+                                                EROSION_FULL,
+                                                DEPTH_FULL,
+                                                WEIRDNESS_LAND_POSITIVE,
+                                                0L
                                         ),
                                         biomes.getOrThrow(ModBiomes.GORGONZOLA_BIOME)
                                 )

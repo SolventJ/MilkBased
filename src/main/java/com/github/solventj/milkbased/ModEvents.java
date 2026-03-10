@@ -1,7 +1,6 @@
 package com.github.solventj.milkbased;
 
 import com.github.solventj.milkbased.block.ModBlocks;
-import com.github.solventj.milkbased.entity.MilkBoat;
 import com.github.solventj.milkbased.util.ModFluidInteractions;
 import com.github.solventj.milkbased.world.dimension.portal.ModPortalShape;
 import com.github.solventj.milkbased.item.ModItems;

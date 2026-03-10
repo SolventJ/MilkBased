@@ -15,6 +15,9 @@ public class ModBiomes {
     public static final ResourceKey<Biome> CHEESE_BIOME = registerKey("cheese_biome");
     public static final ResourceKey<Biome> PLOMBIR_BIOME = registerKey("plombir_biome");
     public static final ResourceKey<Biome> GORGONZOLA_BIOME = registerKey("gorgonzola_biome");
+    public static final ResourceKey<Biome> MILK_OCEAN = registerKey("milk_ocean");
+    public static final ResourceKey<Biome> MILK_RIVER = registerKey("milk_river");
+    public static final ResourceKey<Biome> FROZEN_MILK_RIVER = registerKey("frozen_milk_river");
 
     public static void bootstrap(BootstrapContext<Biome> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -58,6 +61,36 @@ public class ModBiomes {
                                 placedFeatures.getOrThrow(ModPlacedFeatures.CHEESEWOOD_TREE))
                         .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION,
                                 placedFeatures.getOrThrow(ModPlacedFeatures.BLUE_MOLD))
+                        .build())
+                .build());
+
+        context.register(MILK_OCEAN, new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(0.8f)
+                .downfall(0.5f)
+                .specialEffects(milkDimBiomeEffects())
+                .mobSpawnSettings(new MobSpawnSettings.Builder().build())
+                .generationSettings(new BiomeGenerationSettings.PlainBuilder()
+                        .build())
+                .build());
+
+        context.register(MILK_RIVER, new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(0.8f)
+                .downfall(0.5f)
+                .specialEffects(milkDimBiomeEffects())
+                .mobSpawnSettings(new MobSpawnSettings.Builder().build())
+                .generationSettings(new BiomeGenerationSettings.PlainBuilder()
+                        .build())
+                .build());
+
+        context.register(FROZEN_MILK_RIVER, new Biome.BiomeBuilder()
+                .hasPrecipitation(true)
+                .temperature(-10.0f)
+                .downfall(0.5f)
+                .specialEffects(milkDimBiomeEffects())
+                .mobSpawnSettings(new MobSpawnSettings.Builder().build())
+                .generationSettings(new BiomeGenerationSettings.PlainBuilder()
                         .build())
                 .build());
     }

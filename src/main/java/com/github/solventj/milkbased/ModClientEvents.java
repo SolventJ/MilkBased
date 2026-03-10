@@ -2,6 +2,9 @@ package com.github.solventj.milkbased;
 
 import com.github.solventj.milkbased.block_entity.ModBlockEntities;
 import com.github.solventj.milkbased.entity.ModEntities;
+import com.github.solventj.milkbased.entity.boat.CheeseBoat;
+import com.github.solventj.milkbased.entity.boat.MilkBoatRenderer;
+import com.github.solventj.milkbased.entity.boat.PlombirBoat;
 import com.github.solventj.milkbased.fluid.ModFluidTypes;
 import com.github.solventj.milkbased.fluid.ModFluids;
 import com.github.solventj.milkbased.particle.MilkPortalParticle;
@@ -19,7 +22,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -47,13 +49,21 @@ public class ModClientEvents {
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.SIGN.get(), SignRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.HANGING_SIGN.get(), HangingSignRenderer::new);
+
         event.registerEntityRenderer(ModEntities.CHEESE_BOAT.get(),
-                ctx -> new BoatRenderer(ctx, false));
+                ctx -> new MilkBoatRenderer(ctx, false, CheeseBoat.type));
+        event.registerEntityRenderer(ModEntities.CHEESE_CHEST_BOAT.get(),
+                ctx -> new MilkBoatRenderer(ctx, true, CheeseBoat.type));
+
+        event.registerEntityRenderer(ModEntities.PLOMBIR_BOAT.get(),
+                ctx -> new MilkBoatRenderer(ctx, false, PlombirBoat.type));
+        event.registerEntityRenderer(ModEntities.PLOMBIR_CHEST_BOAT.get(),
+                ctx -> new MilkBoatRenderer(ctx, true, PlombirBoat.type));
     }
 
     @SubscribeEvent
     public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModParticleTypes.MILK_RAIN.get(), WaterDropParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.MILK_SPLASH.get(), WaterDropParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.MILK_PORTAL.get(), MilkPortalParticle.Provider::new);
     }
 
@@ -90,11 +100,6 @@ public class ModClientEvents {
             }
 
             @Override
-            public int getTintColor() {
-                return 0xFFFFFFFF;
-            }
-
-            @Override
             public @NotNull Vector3f modifyFogColor(
                     @NotNull Camera camera, float partialTick, @NotNull ClientLevel level, int renderDistance,
                     float darkenWorldAmount, @NotNull Vector3f fluidFogColor) {
@@ -109,6 +114,6 @@ public class ModClientEvents {
                 RenderSystem.setShaderFogEnd(20.0f);
                 RenderSystem.setShaderFogShape(FogShape.CYLINDER);
             }
-        }, ModFluidTypes.MILK_TYPE.get());
+        }, ModFluidTypes.MILK.get());
     }
 }

@@ -2,8 +2,11 @@ package com.github.solventj.milkbased.item;
 
 import com.github.solventj.milkbased.MilkBased;
 import com.github.solventj.milkbased.block.ModBlocks;
-import com.github.solventj.milkbased.entity.MilkBoat;
 import com.github.solventj.milkbased.entity.ModEntities;
+import com.github.solventj.milkbased.entity.boat.CheeseBoat;
+import com.github.solventj.milkbased.entity.boat.CheeseChestBoat;
+import com.github.solventj.milkbased.entity.boat.PlombirBoat;
+import com.github.solventj.milkbased.entity.boat.PlombirChestBoat;
 import com.github.solventj.milkbased.fluid.ModFluids;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
@@ -33,8 +36,17 @@ public class ModItems {
             () -> new HangingSignItem(ModBlocks.PLOMBIR_HANGING_SIGN.get(), ModBlocks.PLOMBIR_WALL_HANGING_SIGN.get(),
                     new Item.Properties().stacksTo(16)));
 
-    public static final DeferredItem<BoatItem> CHEESE_BOAT = ITEMS.register("plombir_boat",
-            () -> new BoatItem(false, ModEntities.CHEESE_BOAT, new Item.Properties()));
+    public static final DeferredItem<MilkBoatItem> CHEESE_BOAT = ModItems.ITEMS.register("cheese_boat",
+            () -> new MilkBoatItem(CheeseBoat::new, new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<MilkBoatItem> CHEESE_CHEST_BOAT = ModItems.ITEMS.register("cheese_chest_boat",
+            () -> new MilkBoatItem(CheeseChestBoat::new, new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<MilkBoatItem> PLOMBIR_BOAT = ModItems.ITEMS.register("plombir_boat",
+            () -> new MilkBoatItem(PlombirBoat::new, new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<MilkBoatItem> PLOMBIR_CHEST_BOAT = ModItems.ITEMS.register("plombir_chest_boat",
+            () -> new MilkBoatItem(PlombirChestBoat::new, new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> CHECHIL = ITEMS.registerSimpleItem("chechil",
             new Item.Properties().food(Foods.COOKIE));

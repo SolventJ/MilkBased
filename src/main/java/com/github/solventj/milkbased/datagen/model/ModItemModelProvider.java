@@ -31,6 +31,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.CHECHIL.get());
         basicItem(ModItems.SCOOP_OF_PLOMBIR.get());
 
+        basicItem(ModItems.CHEESE_BOAT.get());
+        basicItem(ModItems.CHEESE_CHEST_BOAT.get());
+        basicItem(ModItems.PLOMBIR_BOAT.get());
+        basicItem(ModItems.PLOMBIR_CHEST_BOAT.get());
+
         simpleBlockItem(ModBlocks.CURD_BLOCK.get());
         simpleBlockItem(ModBlocks.MILKSTONE.get());
         simpleBlockItem(ModBlocks.COBBLED_MILKSTONE.get());

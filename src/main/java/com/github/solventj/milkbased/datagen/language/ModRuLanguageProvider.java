@@ -20,6 +20,11 @@ public class ModRuLanguageProvider extends LanguageProvider {
 
         addItem(ModItems.MILK_BUCKET, "Ведро молока");
         addItem(ModItems.CHECHIL, "Чечил");
+        addItem(ModItems.SCOOP_OF_PLOMBIR, "Шарик пломбира");
+        addItem(ModItems.CHEESE_BOAT, "Сырная лодка");
+        addItem(ModItems.CHEESE_CHEST_BOAT, "Сырная лодка с сундуком");
+        addItem(ModItems.PLOMBIR_BOAT, "Пломбирная лодка");
+        addItem(ModItems.PLOMBIR_CHEST_BOAT, "Пломбирная лодка с сундуком");
 
         addBlock(ModBlocks.CURD_BLOCK, "Блок творога");
         addBlock(ModBlocks.MILKSTONE, "Молокамень");
@@ -43,10 +48,32 @@ public class ModRuLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.CHEESE_FENCE_GATE, "Сырная калитка");
         addBlock(ModBlocks.CHEESE_DOOR, "Сырная дверь");
         addBlock(ModBlocks.CHEESE_TRAPDOOR, "Сырный люк");
-        addBlock(ModBlocks.CHEESE_PRESSURE_PLATE, "Сырная нажимная плита");
+        addBlock(ModBlocks.CHEESE_PRESSURE_PLATE, "Сырная нажимная пластина");
         addBlock(ModBlocks.CHEESE_BUTTON, "Сырная кнопка");
         addBlock(ModBlocks.CHEESE_SIGN, "Сырная табличка");
         addBlock(ModBlocks.CHEESE_HANGING_SIGN, "Сырная подвисная табличка");
+
+        addBlock(ModBlocks.PLOMBIR_SNOW_BLOCK, "Блок пломбирного снега");
+        addBlock(ModBlocks.PLOMBIR_SNOW, "Пломбирный снег");
+
+        addBlock(ModBlocks.PLOMBIR_SAPLING, "Пломбирный саженец");
+        addBlock(ModBlocks.PLOMBIR_LEAVES, "Пломбирная листва");
+        addBlock(ModBlocks.PLOMBIR_LOG, "Пломбирное бревно");
+        addBlock(ModBlocks.STRIPPED_PLOMBIR_LOG, "Обтёсанное пломбирное бревно");
+        addBlock(ModBlocks.PLOMBIR_WOOD, "Пломбирная древесина");
+        addBlock(ModBlocks.STRIPPED_PLOMBIR_WOOD, "Обтёсанная пломбирная древесина");
+        addBlock(ModBlocks.PLOMBIR_PLANKS, "Пломбирные доски");
+        addBlock(ModBlocks.PLOMBIR_STAIRS, "Пломбирные ступени");
+        addBlock(ModBlocks.PLOMBIR_SLAB, "Пломбирная плита");
+        addBlock(ModBlocks.PLOMBIR_FENCE, "Пломбирный забор");
+        addBlock(ModBlocks.PLOMBIR_FENCE_GATE, "Пломбирная калитка");
+        addBlock(ModBlocks.PLOMBIR_DOOR, "Пломбирная дверь");
+        addBlock(ModBlocks.PLOMBIR_TRAPDOOR, "Пломбирный люк");
+        addBlock(ModBlocks.PLOMBIR_PRESSURE_PLATE, "Пломбирная нажимная пластина");
+        addBlock(ModBlocks.PLOMBIR_BUTTON, "Пломбирная кнопка");
+        addBlock(ModBlocks.PLOMBIR_SIGN, "Пломбирная табличка");
+        addBlock(ModBlocks.PLOMBIR_HANGING_SIGN, "Пломбирная подвисная табличка");
+
         addBlock(ModBlocks.MILK_PORTAL, "Молочный портал");
         addBlock(ModBlocks.GORGONZOLA, "Горгонзола");
         addBlock(ModBlocks.GORGONZOLA_TURF, "Горгонзольный дёрн");

@@ -25,7 +25,7 @@ public class ModFluids {
             () -> new BaseFlowingFluid.Flowing(ModFluids.MILK_FLUID_PROPERTIES));
 
     public static final BaseFlowingFluid.Properties MILK_FLUID_PROPERTIES = new BaseFlowingFluid.Properties(
-            ModFluidTypes.MILK_TYPE, MILK, FLOWING_MILK)
+            ModFluidTypes.MILK, MILK, FLOWING_MILK)
             .block(ModBlocks.MILK).bucket(ModItems.MILK_BUCKET);
 
     public static void register(IEventBus eventBus) {

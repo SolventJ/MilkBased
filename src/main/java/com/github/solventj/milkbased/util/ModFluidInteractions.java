@@ -22,12 +22,12 @@ import java.util.function.Function;
 public class ModFluidInteractions {
 
     public static void bootstrap() {
-        add(NeoForgeMod.LAVA_TYPE.value(), ModFluidTypes.MILK_TYPE.get(), state
+        add(NeoForgeMod.LAVA_TYPE.value(), ModFluidTypes.MILK.get(), state
                 -> state.isSource()
                 ? Blocks.OBSIDIAN.defaultBlockState()
                 : ModBlocks.COBBLED_MILKSTONE.get().defaultBlockState(), 0);
 
-        add(ModFluidTypes.MILK_TYPE.get(), NeoForgeMod.WATER_TYPE.value(),
+        add(ModFluidTypes.MILK.get(), NeoForgeMod.WATER_TYPE.value(),
                 ModBlocks.WHEY_BLOCK.get().defaultBlockState(), 1);
     }
 
@@ -78,16 +78,18 @@ public class ModFluidInteractions {
         Level level = mc.level;
         if (level == null || !level.isClientSide()) return;
 
-        RandomSource randomsource = level.random;
-        level.playLocalSound(pos, SoundEvents.HONEY_BLOCK_SLIDE, SoundSource.BLOCKS, 0.5f,
-                2.6f + (randomsource.nextFloat() - randomsource.nextFloat()) * 0.8f, false);
+        mc.execute(() ->{
+            RandomSource randomsource = RandomSource.createNewThreadLocalInstance();
+            level.playLocalSound(pos, SoundEvents.HONEY_BLOCK_SLIDE, SoundSource.BLOCKS, 0.5f,
+                    2.6f + (randomsource.nextFloat() - randomsource.nextFloat()) * 0.8f, false);
 
-        for (int i = 0; i < 8; ++i) {
-            level.addParticle(ModParticleTypes.MILK_RAIN.get(),
-                    (double) pos.getX() + randomsource.nextDouble(),
-                    (double) pos.getY() + 1.2,
-                    (double) pos.getZ() + randomsource.nextDouble(),
-                    0.0f, 0.0f, 0.0f);
-        }
+            for (int i = 0; i < 8; ++i) {
+                level.addParticle(ModParticleTypes.MILK_SPLASH.get(),
+                        (double) pos.getX() + randomsource.nextDouble(),
+                        (double) pos.getY() + 1.2,
+                        (double) pos.getZ() + randomsource.nextDouble(),
+                        0.0f, 0.0f, 0.0f);
+            }
+        });
     }
 }

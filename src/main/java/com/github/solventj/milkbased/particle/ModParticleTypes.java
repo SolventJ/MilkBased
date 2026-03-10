@@ -13,7 +13,7 @@ public class ModParticleTypes {
     public static final DeferredRegister<ParticleType<?>> PARTICLES =
             DeferredRegister.create(Registries.PARTICLE_TYPE, MilkBased.MOD_ID);
 
-    public static final Supplier<SimpleParticleType> MILK_RAIN = PARTICLES.register("milk_rain",
+    public static final Supplier<SimpleParticleType> MILK_SPLASH = PARTICLES.register("milk_rain",
             () -> new SimpleParticleType(false));
     public static final Supplier<SimpleParticleType> MILK_PORTAL = PARTICLES.register("milk_portal",
             () -> new SimpleParticleType(false));

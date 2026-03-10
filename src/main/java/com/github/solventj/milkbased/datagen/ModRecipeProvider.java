@@ -62,6 +62,9 @@ public class ModRecipeProvider extends RecipeProvider {
         buttonBuilder(ModBlocks.CHEESE_BUTTON, cheesePlanks)
                 .unlockedBy("has_planks", has(ModBlocks.CHEESE_PLANKS)).save(output);
 
+        woodenBoat(output, ModItems.CHEESE_BOAT, ModBlocks.CHEESE_PLANKS);
+        chestBoat(output, ModItems.CHEESE_CHEST_BOAT, ModItems.CHEESE_BOAT);
+
         hangingSign(output, ModItems.PLOMBIR_HANGING_SIGN, ModBlocks.STRIPPED_PLOMBIR_LOG);
         slab(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.PLOMBIR_SLAB, ModBlocks.PLOMBIR_PLANKS);
         pressurePlate(output, ModBlocks.PLOMBIR_PRESSURE_PLATE, ModBlocks.PLOMBIR_PLANKS);
@@ -81,6 +84,9 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_planks", has(ModBlocks.PLOMBIR_PLANKS)).save(output);
         buttonBuilder(ModBlocks.PLOMBIR_BUTTON, plombirPlanks)
                 .unlockedBy("has_planks", has(ModBlocks.PLOMBIR_PLANKS)).save(output);
+
+        woodenBoat(output, ModItems.PLOMBIR_BOAT, ModBlocks.PLOMBIR_PLANKS);
+        chestBoat(output, ModItems.PLOMBIR_CHEST_BOAT, ModItems.PLOMBIR_BOAT);
 
         twoByTwoPacker(output, RecipeCategory.BUILDING_BLOCKS,
                 ModBlocks.PLOMBIR_SNOW_BLOCK, ModItems.SCOOP_OF_PLOMBIR);
