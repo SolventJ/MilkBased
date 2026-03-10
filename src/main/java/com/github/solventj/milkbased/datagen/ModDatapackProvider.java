@@ -20,7 +20,6 @@ public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.BIOME, ModBiomes::bootstrap)
             .add(Registries.DIMENSION_TYPE, ModDimensionTypes::bootstrap)
-            .add(Registries.LEVEL_STEM, ModDimensions::bootstrap)
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
             .add(Registries.NOISE_SETTINGS, ModNoiseGeneratorSettings::bootstrap);

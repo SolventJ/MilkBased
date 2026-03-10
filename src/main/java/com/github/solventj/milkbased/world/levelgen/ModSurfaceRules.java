@@ -33,6 +33,13 @@ public class ModSurfaceRules {
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.GORGONZOLA_BIOME),
                         makeStateRule(ModBlocks.GORGONZOLA_TURF.get())
+                ),
+                SurfaceRules.ifTrue(
+                        SurfaceRules.isBiome(
+                                ModBiomes.MILK_OCEAN,
+                                ModBiomes.MILK_RIVER,
+                                ModBiomes.FROZEN_MILK_RIVER),
+                        makeStateRule(ModBlocks.CURD_BLOCK.get())
                 )
         );
 
@@ -75,7 +82,7 @@ public class ModSurfaceRules {
 
                 SurfaceRules.ifTrue(
                         SurfaceRules.stoneDepthCheck(0, false, CaveSurface.FLOOR),
-                        makeStateRule(Blocks.YELLOW_CONCRETE)
+                        makeStateRule(ModBlocks.CURD_BLOCK.get())
                 )
         );
 
