@@ -50,7 +50,10 @@ public class ModSurfaceRules {
                 ),
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.PLOMBIR_BIOME),
-                        makeStateRule(ModBlocks.PLOMBIR_SNOW_BLOCK.get())
+                        SurfaceRules.ifTrue(
+                                SurfaceRules.waterBlockCheck(-1, 0),
+                                makeStateRule(ModBlocks.PLOMBIR_SNOW_BLOCK.get())
+                        )
                 ),
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.GORGONZOLA_BIOME),
