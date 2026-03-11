@@ -6,6 +6,7 @@
   "refmap": "milkbased.refmap.json",
   "mixins": [
     "BoatMixin",
+    "EntityMixin",
     "IEntityExtensionMixin",
     "LavaFluidMixin",
     "ServerLevelMixin"

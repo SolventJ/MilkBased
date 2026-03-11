@@ -36,9 +36,7 @@ public class MilkBased {
     }
 
     // TODO: Fix portal overlay
-    // TODO: Fix cheesewood trees dirt
     // TODO: Fix milk texture
-    // TODO: Replace water splash with milk splash
-    // TODO: Fix game crush when water interact with milk
-    // TODO: Add milk river / ocean biome
+
+    // TODO: Fix cheesewood trees dirt
 }

@@ -35,8 +35,7 @@ public class ModConfiguredFeatures {
                 BlockStateProvider.simple(ModBlocks.CHEESEWOOD_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1))
-                .forceDirt().build());
-//                .dirt(BlockStateProvider.simple(ModBlocks.CHEESE_BLOCK.get())).build());
+                .dirt(BlockStateProvider.simple(ModBlocks.CHEESE_BLOCK.get())).build());
 
         register(context, PLOMBIR_TREE, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ModBlocks.PLOMBIR_LOG.get()),
